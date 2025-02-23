@@ -15,7 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NArchitecture.Starter.Persi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NArchitecture.Starter.Infrastructure", "src\NArchitecture.Starter\Infrastructure\NArchitecture.Starter.Infrastructure.csproj", "{8696C5CF-50A9-41A3-848F-414D39A8FB21}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NArchitecture.Starter.WebAPI", "src\NArchitecture.Starter\WebAPI\NArchitecture.Starter.WebAPI.csproj", "{5A5C5789-75A7-4773-AB44-13721819502A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NArchitecture.Starter.WebApi", "src\NArchitecture.Starter\WebApi\NArchitecture.Starter.WebApi.csproj", "{5A5C5789-75A7-4773-AB44-13721819502A}"
 	ProjectSection(ProjectDependencies) = postProject
 		{8696C5CF-50A9-41A3-848F-414D39A8FB21} = {8696C5CF-50A9-41A3-848F-414D39A8FB21}
 	EndProjectSection

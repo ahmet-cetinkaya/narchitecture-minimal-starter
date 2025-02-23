@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using NArchitecture.Core.Security.Extensions;
 
-namespace WebAPI.Controllers;
+namespace WebApi.Controllers;
 
 public class BaseController : ControllerBase
 {

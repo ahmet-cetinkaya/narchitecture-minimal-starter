@@ -1,4 +1,4 @@
-﻿namespace WebAPI.Controllers.Dtos;
+﻿namespace WebApi.Controllers.Dtos;
 
 public class UpdateByAuthFromServiceRequestDto
 {

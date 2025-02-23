@@ -14,7 +14,7 @@ using NArchitecture.Core.Security.JWT;
 using NArchitecture.Core.Security.WebApi.Swagger.Extensions;
 using Persistence;
 using Swashbuckle.AspNetCore.SwaggerUI;
-using WebAPI;
+using WebApi;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
@@ -105,11 +105,11 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-const string webApiConfigurationSection = "WebAPIConfiguration";
-WebApiConfiguration webApiConfiguration =
-    app.Configuration.GetSection(webApiConfigurationSection).Get<WebApiConfiguration>()
-    ?? throw new InvalidOperationException($"\"{webApiConfigurationSection}\" section cannot found in configuration.");
-app.UseCors(opt => opt.WithOrigins(webApiConfiguration.AllowedOrigins).AllowAnyHeader().AllowAnyMethod().AllowCredentials());
+const string WebApiConfigurationSection = "WebApiConfiguration";
+WebApiConfiguration WebApiConfiguration =
+    app.Configuration.GetSection(WebApiConfigurationSection).Get<WebApiConfiguration>()
+    ?? throw new InvalidOperationException($"\"{WebApiConfigurationSection}\" section cannot found in configuration.");
+app.UseCors(opt => opt.WithOrigins(WebApiConfiguration.AllowedOrigins).AllowAnyHeader().AllowAnyMethod().AllowCredentials());
 
 app.UseResponseLocalization();
 

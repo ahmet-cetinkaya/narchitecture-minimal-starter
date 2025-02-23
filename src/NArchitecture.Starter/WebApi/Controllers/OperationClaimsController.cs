@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using NArchitecture.Core.Application.Requests;
 using NArchitecture.Core.Application.Responses;
 
-namespace WebAPI.Controllers;
+namespace WebApi.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]

@@ -17,7 +17,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "WebAPI.Console.Development": {
+    "WebApi.Console.Development": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": false,
@@ -27,7 +27,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "WebAPI.Console.Staging": {
+    "WebApi.Console.Staging": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": false,
@@ -37,7 +37,7 @@
         "ASPNETCORE_ENVIRONMENT": "Staging"
       }
     },
-    "WebAPI.Console.Production": {
+    "WebApi.Console.Production": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": false,

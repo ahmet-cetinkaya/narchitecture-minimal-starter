@@ -46,8 +46,8 @@ To get a local copy up and running follow these simple steps.
    ```sh
    git clone --recurse-submodules https://github.com/kodlamaio-projects/nArchitecture.git
    ```
-2. Configure `appsettings.json` in WebAPI.
-3. Run `Update-Database` command with Package Manager Console in WebAPI to create tables in sql server.
+2. Configure `appsettings.json` in WebApi.
+3. Run `Update-Database` command with Package Manager Console in WebApi to create tables in sql server.
 
 - Run the following command to update submodules
   ```sh
@@ -56,7 +56,7 @@ To get a local copy up and running follow these simple steps.
 
 ## 🚀 Usage
 
-1. Run example WebAPI project `dotnet run --project src\rentACar\WebAPI`
+1. Run example WebApi project `dotnet run --project src\rentACar\WebApi`
 
 ### Analysis
 

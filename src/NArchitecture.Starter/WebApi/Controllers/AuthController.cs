@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using NArchitecture.Core.Application.Dtos;
 
-namespace WebAPI.Controllers;
+namespace WebApi.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
@@ -21,7 +21,7 @@ public class AuthController : BaseController
 
     public AuthController(IConfiguration configuration)
     {
-        const string configurationSection = "WebAPIConfiguration";
+        const string configurationSection = "WebApiConfiguration";
         _configuration =
             configuration.GetSection(configurationSection).Get<WebApiConfiguration>()
             ?? throw new NullReferenceException($"\"{configurationSection}\" section cannot found in configuration.");
