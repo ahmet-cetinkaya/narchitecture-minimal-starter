@@ -21,9 +21,9 @@
 	<PackageReference Include="NArchitecture.Core.Security.WebApi.Swagger" Version="1.0.0" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Application\Application.csproj" />
-    <ProjectReference Include="..\Infrastructure\Infrastructure.csproj" />
-    <ProjectReference Include="..\Persistence\Persistence.csproj" />
+    <ProjectReference Include="..\Application\NArchitecture.Starter.Application.csproj" />
+    <ProjectReference Include="..\Infrastructure\NArchitecture.Starter.Infrastructure.csproj" />
+    <ProjectReference Include="..\Persistence\NArchitecture.Starter.Persistence.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controllers\Dtos" />

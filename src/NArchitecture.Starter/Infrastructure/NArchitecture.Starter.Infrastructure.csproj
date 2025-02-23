@@ -8,6 +8,6 @@
     <PackageReference Include="CloudinaryDotNet" Version="1.26.2" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Application\Application.csproj" />
+    <ProjectReference Include="..\Application\NArchitecture.Starter.Application.csproj" />
   </ItemGroup>
 </Project>
