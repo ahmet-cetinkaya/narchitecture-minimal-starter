@@ -1,4 +1,4 @@
-[`Docs`](../index.md) > [`Contributing`](./index.md) > `How to Contribute`
+[`Docs`](../README.md) > [`Contributing`](./README.md) > `How to Contribute`
 
 # 🤝 How to Contribute
 1. Fork the repository.

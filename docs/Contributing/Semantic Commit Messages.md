@@ -1,4 +1,4 @@
-[`Docs`](../index.md) > [`Contributing`](./index.md) > `Semantic Commit Messages`
+[`Docs`](../README.md) > [`Contributing`](./README.md) > `Semantic Commit Messages`
 
 # 🏷️ Semantic Commit Messages
 Semantic commit messages help to understand the changes made in a commit. They follow a specific format that includes a type, scope, and subject.

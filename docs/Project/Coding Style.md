@@ -1,4 +1,4 @@
-[`Docs`](../index.md) > [`Project`](./index.md) > `Coding Style`
+[`Docs`](../README.md) > [`Project`](./README.md) > `Coding Style`
 
 # 📝 Coding Style
 This document outlines the coding style and conventions used in the NArchitecture project. Adhering to these guidelines ensures consistency and readability across the codebase.

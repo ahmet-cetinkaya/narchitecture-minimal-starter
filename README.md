@@ -33,11 +33,11 @@ dotnet r analyze
 dotnet r format
 ```
 
-For more detailed usage instructions, please refer to the [project wiki](./docs/index.md).
+For more detailed usage instructions, please refer to the [project wiki](./docs/README.md).
 
 ## 🤝 Contributing
 
-If you'd like to contribute, please follow the [contributing guide](./docs/Contributing/index.md).
+If you'd like to contribute, please follow the [contributing guide](./docs/Contributing/README.md).
 
 ## ⚖️ License
 
