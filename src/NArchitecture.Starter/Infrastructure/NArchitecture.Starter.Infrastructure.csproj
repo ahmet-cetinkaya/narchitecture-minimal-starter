@@ -1,13 +1,20 @@
 <Project Sdk="Microsoft.NET.Sdk">
+
+  <!-- Project Properties -->
   <PropertyGroup>
     <TargetFramework>net9.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
+
+  <!-- Package References -->
   <ItemGroup>
     <PackageReference Include="CloudinaryDotNet" Version="1.27.4" />
   </ItemGroup>
+
+  <!-- Project References -->
   <ItemGroup>
     <ProjectReference Include="..\Application\NArchitecture.Starter.Application.csproj" />
   </ItemGroup>
+
 </Project>

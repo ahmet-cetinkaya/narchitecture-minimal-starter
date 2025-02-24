@@ -1,12 +1,18 @@
 <Project Sdk="Microsoft.NET.Sdk">
+
+  <!-- Project Properties -->
   <PropertyGroup>
     <TargetFramework>net9.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
+
+  <!-- Project References -->
   <ItemGroup>
     <ProjectReference Include="..\Application\NArchitecture.Starter.Application.csproj" />
   </ItemGroup>
+
+  <!-- Package References -->
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="9.0.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.2" />
@@ -14,4 +20,5 @@
     <PackageReference Include="NArchitecture.Core.Persistence" Version="1.1.5" />
     <PackageReference Include="NArchitecture.Core.Persistence.DependencyInjection" Version="1.0.2" />
   </ItemGroup>
+
 </Project>

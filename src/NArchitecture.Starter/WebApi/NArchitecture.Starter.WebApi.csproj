@@ -1,9 +1,13 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <!-- Project Properties -->
   <PropertyGroup>
     <TargetFramework>net9.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
+
+  <!-- Package References -->
   <ItemGroup>
     <PackageReference Include="Swashbuckle.AspNetCore" Version="7.2.0" />
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.6.0" />
@@ -15,18 +19,23 @@
     <PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="9.0.2" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.2" />
     <PackageReference Include="Microsoft.Extensions.Logging" Version="9.0.2" />
-	<PackageReference Include="NArchitecture.Core.CrossCuttingConcerns.Exception.WebApi" Version="1.1.2" />
-	<PackageReference Include="NArchitecture.Core.Localization.WebApi" Version="1.0.1" />
-	<PackageReference Include="NArchitecture.Core.Persistence.WebApi" Version="1.0.2" />
-	<PackageReference Include="NArchitecture.Core.Security.WebApi.Swagger" Version="1.0.2" />
+    <PackageReference Include="NArchitecture.Core.CrossCuttingConcerns.Exception.WebApi" Version="1.1.2" />
+    <PackageReference Include="NArchitecture.Core.Localization.WebApi" Version="1.0.1" />
+    <PackageReference Include="NArchitecture.Core.Persistence.WebApi" Version="1.0.2" />
+    <PackageReference Include="NArchitecture.Core.Security.WebApi.Swagger" Version="1.0.2" />
   </ItemGroup>
+
+  <!-- Project References -->
   <ItemGroup>
     <ProjectReference Include="..\Application\NArchitecture.Starter.Application.csproj" />
     <ProjectReference Include="..\Infrastructure\NArchitecture.Starter.Infrastructure.csproj" />
     <ProjectReference Include="..\Persistence\NArchitecture.Starter.Persistence.csproj" />
   </ItemGroup>
+
+  <!-- Folders -->
   <ItemGroup>
     <Folder Include="Controllers\Dtos" />
     <Folder Include="logs\" />
   </ItemGroup>
+
 </Project>
