@@ -2,6 +2,7 @@
 using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using NArchitecture.Starter.Domain.Features.Auth.Entities;
 
 namespace Persistence.Contexts;
 

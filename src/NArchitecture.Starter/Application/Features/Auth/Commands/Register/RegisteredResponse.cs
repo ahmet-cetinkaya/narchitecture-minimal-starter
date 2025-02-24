@@ -6,7 +6,7 @@ namespace Application.Features.Auth.Commands.Register;
 public class RegisteredResponse : IResponse
 {
     public AccessToken AccessToken { get; set; }
-    public Domain.Entities.RefreshToken RefreshToken { get; set; }
+    public NArchitecture.Starter.Domain.Features.Auth.Entities.RefreshToken RefreshToken { get; set; }
 
     public RegisteredResponse()
     {
@@ -14,7 +14,7 @@ public class RegisteredResponse : IResponse
         RefreshToken = null!;
     }
 
-    public RegisteredResponse(AccessToken accessToken, Domain.Entities.RefreshToken refreshToken)
+    public RegisteredResponse(AccessToken accessToken, NArchitecture.Starter.Domain.Features.Auth.Entities.RefreshToken refreshToken)
     {
         AccessToken = accessToken;
         RefreshToken = refreshToken;

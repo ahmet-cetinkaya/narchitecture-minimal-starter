@@ -1,12 +1,12 @@
 using Application.Features.UserOperationClaims.Constants;
 using Application.Services.Repositories;
 using AutoMapper;
-using Domain.Entities;
 using MediatR;
 using NArchitecture.Core.Application.Pipelines.Authorization;
 using NArchitecture.Core.Application.Requests;
 using NArchitecture.Core.Application.Responses;
 using NArchitecture.Core.Persistence.Paging;
+using NArchitecture.Starter.Domain.Features.Auth.Entities;
 
 namespace Application.Features.UserOperationClaims.Queries.GetList;
 

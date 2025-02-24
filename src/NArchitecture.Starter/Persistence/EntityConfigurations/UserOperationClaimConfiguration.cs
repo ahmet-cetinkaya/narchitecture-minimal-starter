@@ -1,6 +1,6 @@
-﻿using Domain.Entities;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using NArchitecture.Starter.Domain.Features.Auth.Entities;
 
 namespace Persistence.EntityConfigurations;
 

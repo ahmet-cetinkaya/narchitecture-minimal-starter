@@ -1,7 +1,7 @@
 ﻿using Application.Services.Repositories;
-using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using NArchitecture.Core.Persistence.Repositories;
+using NArchitecture.Starter.Domain.Features.Auth.Entities;
 using Persistence.Contexts;
 
 namespace Persistence.Repositories;

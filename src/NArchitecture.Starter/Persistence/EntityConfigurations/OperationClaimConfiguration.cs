@@ -2,10 +2,10 @@ using Application.Features.Auth.Constants;
 using Application.Features.OperationClaims.Constants;
 using Application.Features.UserOperationClaims.Constants;
 using Application.Features.Users.Constants;
-using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using NArchitecture.Core.Security.Constants;
+using NArchitecture.Starter.Domain.Features.Auth.Entities;
 
 namespace Persistence.EntityConfigurations;
 

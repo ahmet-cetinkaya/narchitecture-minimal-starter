@@ -2,10 +2,10 @@ using Application.Features.Users.Constants;
 using Application.Features.Users.Rules;
 using Application.Services.Repositories;
 using AutoMapper;
-using Domain.Entities;
 using MediatR;
 using NArchitecture.Core.Application.Pipelines.Authorization;
 using NArchitecture.Core.Security.Hashing;
+using NArchitecture.Starter.Domain.Features.Auth.Entities;
 using static Application.Features.Users.Constants.UsersOperationClaims;
 
 namespace Application.Features.Users.Commands.Create;

@@ -2,9 +2,9 @@
 using Application.Services.AuthService;
 using Application.Services.Repositories;
 using AutoMapper;
-using Domain.Entities;
 using MediatR;
 using NArchitecture.Core.Security.Hashing;
+using NArchitecture.Starter.Domain.Features.Auth.Entities;
 
 namespace Application.Features.Users.Commands.UpdateFromAuth;
 

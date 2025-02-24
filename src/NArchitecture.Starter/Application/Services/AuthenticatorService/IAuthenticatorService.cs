@@ -1,4 +1,5 @@
 ﻿using Domain.Entities;
+using NArchitecture.Starter.Domain.Features.Auth.Entities;
 
 namespace Application.Services.AuthenticatorService;
 

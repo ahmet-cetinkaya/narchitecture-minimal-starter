@@ -6,6 +6,7 @@ using NArchitecture.Core.CrossCuttingConcerns.Exception.Types;
 using NArchitecture.Core.Localization.Abstraction;
 using NArchitecture.Core.Security.Enums;
 using NArchitecture.Core.Security.Hashing;
+using NArchitecture.Starter.Domain.Features.Auth.Entities;
 
 namespace Application.Features.Auth.Rules;
 

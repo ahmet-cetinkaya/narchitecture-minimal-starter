@@ -2,9 +2,9 @@ using Application.Features.OperationClaims.Constants;
 using Application.Features.OperationClaims.Rules;
 using Application.Services.Repositories;
 using AutoMapper;
-using Domain.Entities;
 using MediatR;
 using NArchitecture.Core.Application.Pipelines.Authorization;
+using NArchitecture.Starter.Domain.Features.Auth.Entities;
 using static Application.Features.OperationClaims.Constants.OperationClaimsOperationClaims;
 
 namespace Application.Features.OperationClaims.Commands.Delete;

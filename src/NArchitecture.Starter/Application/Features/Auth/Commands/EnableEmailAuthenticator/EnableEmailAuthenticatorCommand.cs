@@ -9,6 +9,7 @@ using MimeKit;
 using NArchitecture.Core.Application.Pipelines.Authorization;
 using NArchitecture.Core.Mailing;
 using NArchitecture.Core.Security.Enums;
+using NArchitecture.Starter.Domain.Features.Auth.Entities;
 
 namespace Application.Features.Auth.Commands.EnableEmailAuthenticator;
 

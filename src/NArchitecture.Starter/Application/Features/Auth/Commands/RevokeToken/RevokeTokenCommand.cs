@@ -42,7 +42,7 @@ public class RevokeTokenCommand : IRequest<RevokedTokenResponse>, ISecuredReques
 
         public async Task<RevokedTokenResponse> Handle(RevokeTokenCommand request, CancellationToken cancellationToken)
         {
-            Domain.Entities.RefreshToken? refreshToken = await _authService.GetRefreshTokenByToken(request.Token);
+            NArchitecture.Starter.Domain.Features.Auth.Entities.RefreshToken? refreshToken = await _authService.GetRefreshTokenByToken(request.Token);
             await _authBusinessRules.RefreshTokenShouldBeExists(refreshToken);
             await _authBusinessRules.RefreshTokenShouldBeActive(refreshToken!);
 

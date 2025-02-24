@@ -4,9 +4,9 @@ using Application.Features.OperationClaims.Commands.Update;
 using Application.Features.OperationClaims.Queries.GetById;
 using Application.Features.OperationClaims.Queries.GetList;
 using AutoMapper;
-using Domain.Entities;
 using NArchitecture.Core.Application.Responses;
 using NArchitecture.Core.Persistence.Paging;
+using NArchitecture.Starter.Domain.Features.Auth.Entities;
 
 namespace Application.Features.OperationClaims.Profiles;
 

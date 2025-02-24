@@ -2,11 +2,11 @@
 using Application.Services.AuthenticatorService;
 using Application.Services.AuthService;
 using Application.Services.UsersService;
-using Domain.Entities;
 using MediatR;
 using NArchitecture.Core.Application.Dtos;
 using NArchitecture.Core.Security.Enums;
 using NArchitecture.Core.Security.JWT;
+using NArchitecture.Starter.Domain.Features.Auth.Entities;
 
 namespace Application.Features.Auth.Commands.Login;
 
@@ -72,8 +72,8 @@ public class LoginCommand : IRequest<LoggedResponse>
 
             AccessToken createdAccessToken = await _authService.CreateAccessToken(user);
 
-            Domain.Entities.RefreshToken createdRefreshToken = await _authService.CreateRefreshToken(user, request.IpAddress);
-            Domain.Entities.RefreshToken addedRefreshToken = await _authService.AddRefreshToken(createdRefreshToken);
+            NArchitecture.Starter.Domain.Features.Auth.Entities.RefreshToken createdRefreshToken = await _authService.CreateRefreshToken(user, request.IpAddress);
+            NArchitecture.Starter.Domain.Features.Auth.Entities.RefreshToken addedRefreshToken = await _authService.AddRefreshToken(createdRefreshToken);
             await _authService.DeleteOldRefreshTokens(user.Id);
 
             loggedResponse.AccessToken = createdAccessToken;

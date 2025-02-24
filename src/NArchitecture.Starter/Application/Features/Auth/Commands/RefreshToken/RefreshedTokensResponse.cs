@@ -6,7 +6,7 @@ namespace Application.Features.Auth.Commands.RefreshToken;
 public class RefreshedTokensResponse : IResponse
 {
     public AccessToken AccessToken { get; set; }
-    public Domain.Entities.RefreshToken RefreshToken { get; set; }
+    public NArchitecture.Starter.Domain.Features.Auth.Entities.RefreshToken RefreshToken { get; set; }
 
     public RefreshedTokensResponse()
     {
@@ -14,7 +14,7 @@ public class RefreshedTokensResponse : IResponse
         RefreshToken = null!;
     }
 
-    public RefreshedTokensResponse(AccessToken accessToken, Domain.Entities.RefreshToken refreshToken)
+    public RefreshedTokensResponse(AccessToken accessToken, NArchitecture.Starter.Domain.Features.Auth.Entities.RefreshToken refreshToken)
     {
         AccessToken = accessToken;
         RefreshToken = refreshToken;

@@ -2,9 +2,9 @@
 using Application.Services.AuthenticatorService;
 using Application.Services.Repositories;
 using Application.Services.UsersService;
-using Domain.Entities;
 using MediatR;
 using NArchitecture.Core.Application.Pipelines.Authorization;
+using NArchitecture.Starter.Domain.Features.Auth.Entities;
 
 namespace Application.Features.Auth.Commands.EnableOtpAuthenticator;
 

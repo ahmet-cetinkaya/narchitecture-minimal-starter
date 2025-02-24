@@ -1,5 +1,5 @@
-﻿using Domain.Entities;
-using NArchitecture.Core.Persistence.Repositories;
+﻿using NArchitecture.Core.Persistence.Repositories;
+using NArchitecture.Starter.Domain.Features.Auth.Entities;
 
 namespace Application.Services.Repositories;
 

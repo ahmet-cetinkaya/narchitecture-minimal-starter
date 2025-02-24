@@ -6,6 +6,7 @@ using NArchitecture.Core.Mailing;
 using NArchitecture.Core.Security.EmailAuthenticator;
 using NArchitecture.Core.Security.Enums;
 using NArchitecture.Core.Security.OtpAuthenticator;
+using NArchitecture.Starter.Domain.Features.Auth.Entities;
 
 namespace Application.Services.AuthenticatorService;
 
