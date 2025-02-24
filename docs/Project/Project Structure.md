@@ -1,4 +1,4 @@
-[`Docs`](../README.md) > [`Project`](./README.md) > `Project Structure`
+[`🏠`](../README.md) > [`Project`](./README.md) > `Project Structure`
 
 # 📂 Project Structure
 This document provides an overview of the project structure and the different layers within the NArchitecture framework. Understanding the structure will help you navigate the codebase and contribute effectively.
