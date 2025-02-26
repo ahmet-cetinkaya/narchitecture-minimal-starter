@@ -2,5 +2,5 @@
 
 namespace NArchitecture.Starter.Domain.Features.Auth.Entities;
 
-public class UserInGroup(Guid userId, ushort groupId)
-    : NArchitectureCoreEntities.UserInGroup<Guid, Guid, Guid, ushort>(userId, groupId) { }
+public class UserInGroup(Guid userId, Guid userGroupId)
+    : NArchitectureCoreEntities.UserInGroup<Guid, ushort, Guid, Guid, Guid, Guid, Guid, Guid>(userId, userGroupId);

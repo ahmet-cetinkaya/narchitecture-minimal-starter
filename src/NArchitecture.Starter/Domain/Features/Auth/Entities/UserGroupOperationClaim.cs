@@ -2,5 +2,8 @@
 
 namespace NArchitecture.Starter.Domain.Features.Auth.Entities;
 
-public class UserGroupOperationClaim(ushort userGroupId, ushort operationClaimId)
-    : NArchitectureCoreEntities.UserGroupOperationClaim<int, ushort, Guid, Guid, Guid, ushort>(userGroupId, operationClaimId) { }
+public class UserGroupOperationClaim(Guid userGroupId, ushort operationClaimId)
+    : NArchitectureCoreEntities.UserGroupOperationClaim<Guid, ushort, Guid, Guid, Guid, Guid, Guid>(
+        userGroupId,
+        operationClaimId
+    );

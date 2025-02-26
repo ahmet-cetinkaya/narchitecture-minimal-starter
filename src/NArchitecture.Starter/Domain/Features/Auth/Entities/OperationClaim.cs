@@ -2,4 +2,4 @@
 
 namespace NArchitecture.Starter.Domain.Features.Auth.Entities;
 
-public class OperationClaim(string name) : NArchitectureCoreEntities.OperationClaim<ushort>(name) { }
+public class OperationClaim(string name) : NArchitectureCoreEntities.OperationClaim<ushort>(name);

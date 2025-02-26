@@ -3,7 +3,7 @@
 namespace NArchitecture.Starter.Domain.Features.Auth.Entities;
 
 public class User(string email, byte[] passwordSalt, byte[] passwordHash)
-    : NArchitectureCoreEntities.User<Guid, Guid>(passwordSalt, passwordHash)
+    : NArchitectureCoreEntities.User<Guid, ushort, Guid, Guid, Guid, Guid, Guid>(passwordSalt, passwordHash)
 {
     public string Email { get; set; } = email;
 }

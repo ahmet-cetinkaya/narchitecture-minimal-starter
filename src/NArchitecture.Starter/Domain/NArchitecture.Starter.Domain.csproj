@@ -7,12 +7,6 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <!-- Folders -->
-  <ItemGroup>
-    <Folder Include="Entities\" />
-    <Folder Include="Enums\" />
-  </ItemGroup>
-
   <!-- Package References -->
   <ItemGroup>
     <!-- <PackageReference Include="NArchitecture.Core.Persistence" Version="1.1.5" />
@@ -21,8 +15,10 @@
 
   <!-- TODO: Remove project reference -->
   <ItemGroup>
-    <ProjectReference Include="../../../../nArchitecture.Core/src/Persistence.Abstractions/NArchitecture.Core.Persistence.Abstractions.csproj" />
-    <ProjectReference Include="../../../../nArchitecture.Core/src/Security.Abstractions/NArchitecture.Core.Security.Abstractions.csproj" />
+    <ProjectReference
+      Include="../../NArchitecture.Core/src/Persistence.Abstractions/NArchitecture.Core.Persistence.Abstractions.csproj" />
+    <ProjectReference
+      Include="../../NArchitecture.Core/src/Security.Abstractions/NArchitecture.Core.Security.Abstractions.csproj" />
   </ItemGroup>
 
 </Project>
