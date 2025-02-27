@@ -15,7 +15,7 @@ namespace NArchitecture.Starter.Persistence.Features.Auth.Repositories;
 public class EfUserRepository(BaseDbContext context) : EfRepositoryBase<User, Guid, BaseDbContext>(context), IUserRepository
 {
     /// <inheritdoc/>
-    public async Task<User<Guid, ushort, Guid, Guid, Guid, Guid, Guid>?> GetByIdAsync(
+    public async Task<User<Guid, short, Guid, Guid, Guid, Guid, Guid>?> GetByIdAsync(
         Guid userId,
         CancellationToken cancellationToken
     )
@@ -25,7 +25,7 @@ public class EfUserRepository(BaseDbContext context) : EfRepositoryBase<User, Gu
     }
 
     /// <inheritdoc/>
-    public async Task<ICollection<OperationClaim<ushort>>> GetOperationClaimsAsync(
+    public async Task<ICollection<OperationClaim<short>>> GetOperationClaimsAsync(
         Guid id,
         CancellationToken cancellationToken = default
     )
@@ -46,19 +46,19 @@ public class EfUserRepository(BaseDbContext context) : EfRepositoryBase<User, Gu
         );
 
         if (user == null)
-            return Array.Empty<OperationClaim<ushort>>();
+            return Array.Empty<OperationClaim<short>>();
 
         // Get user's direct operation claims
-        List<OperationClaim<ushort>> userOperationClaims = user.UserOperationClaims!.Select(uoc => uoc.OperationClaim).ToList()!;
+        List<OperationClaim<short>> userOperationClaims = user.UserOperationClaims!.Select(uoc => uoc.OperationClaim).ToList()!;
 
         // Get user's group operation claims
-        List<OperationClaim<ushort>> userGroupOperationClaims = user.UserInGroups!.SelectMany(uig =>
+        List<OperationClaim<short>> userGroupOperationClaims = user.UserInGroups!.SelectMany(uig =>
                 uig.UserGroup!.UserGroupOperationClaims!.Select(ugoc => ugoc.OperationClaim)
             )
             .ToList()!;
 
         // Combine and remove duplicates
-        List<OperationClaim<ushort>> allOperationClaims = [.. userOperationClaims.Union(userGroupOperationClaims).Distinct()];
+        List<OperationClaim<short>> allOperationClaims = [.. userOperationClaims.Union(userGroupOperationClaims).Distinct()];
 
         return allOperationClaims;
     }

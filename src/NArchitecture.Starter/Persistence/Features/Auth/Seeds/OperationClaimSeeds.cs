@@ -13,7 +13,7 @@ public static class OperationClaimSeeds
     /// </summary>
     public static class Ids
     {
-        public const ushort Admin = 1;
+        public const short Admin = 1;
     }
 
     /// <summary>

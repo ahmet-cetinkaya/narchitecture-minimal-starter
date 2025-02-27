@@ -15,8 +15,8 @@ public class EfRefreshTokenRepository(BaseDbContext context)
         IRefreshTokenRepository
 {
     /// <inheritdoc/>
-    public async Task<RefreshToken<Guid, ushort, Guid, Guid, Guid, Guid, Guid>> AddAsync(
-        RefreshToken<Guid, ushort, Guid, Guid, Guid, Guid, Guid> refreshTokenEntity,
+    public async Task<RefreshToken<Guid, short, Guid, Guid, Guid, Guid, Guid>> AddAsync(
+        RefreshToken<Guid, short, Guid, Guid, Guid, Guid, Guid> refreshTokenEntity,
         CancellationToken cancellationToken
     )
     {
@@ -32,7 +32,7 @@ public class EfRefreshTokenRepository(BaseDbContext context)
     }
 
     /// <inheritdoc/>
-    public async Task<ICollection<RefreshToken<Guid, ushort, Guid, Guid, Guid, Guid, Guid>>> GetAllActiveByUserIdAsync(
+    public async Task<ICollection<RefreshToken<Guid, short, Guid, Guid, Guid, Guid, Guid>>> GetAllActiveByUserIdAsync(
         Guid userId,
         CancellationToken cancellationToken = default
     )
@@ -50,14 +50,14 @@ public class EfRefreshTokenRepository(BaseDbContext context)
         );
 
         if (tokens.Count == 0)
-            return Array.Empty<RefreshToken<Guid, ushort, Guid, Guid, Guid, Guid, Guid>>();
+            return Array.Empty<RefreshToken<Guid, short, Guid, Guid, Guid, Guid, Guid>>();
 
         // Cast the collection to the required interface type
-        return [.. tokens.Cast<RefreshToken<Guid, ushort, Guid, Guid, Guid, Guid, Guid>>()];
+        return [.. tokens.Cast<RefreshToken<Guid, short, Guid, Guid, Guid, Guid, Guid>>()];
     }
 
     /// <inheritdoc/>
-    public async Task<RefreshToken<Guid, ushort, Guid, Guid, Guid, Guid, Guid>?> GetByTokenAsync(
+    public async Task<RefreshToken<Guid, short, Guid, Guid, Guid, Guid, Guid>?> GetByTokenAsync(
         string token,
         CancellationToken cancellationToken = default
     )
@@ -74,8 +74,8 @@ public class EfRefreshTokenRepository(BaseDbContext context)
     }
 
     /// <inheritdoc/>
-    public async Task<RefreshToken<Guid, ushort, Guid, Guid, Guid, Guid, Guid>> UpdateAsync(
-        RefreshToken<Guid, ushort, Guid, Guid, Guid, Guid, Guid> token,
+    public async Task<RefreshToken<Guid, short, Guid, Guid, Guid, Guid, Guid>> UpdateAsync(
+        RefreshToken<Guid, short, Guid, Guid, Guid, Guid, Guid> token,
         CancellationToken cancellationToken
     )
     {

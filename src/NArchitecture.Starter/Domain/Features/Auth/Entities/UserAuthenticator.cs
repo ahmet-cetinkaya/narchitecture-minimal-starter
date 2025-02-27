@@ -4,4 +4,4 @@ using NArchitectureCoreEntities = NArchitecture.Core.Security.Abstractions.Authe
 namespace NArchitecture.Starter.Domain.Features.Auth.Entities;
 
 public class UserAuthenticator(Guid userId, AuthenticatorType type)
-    : NArchitectureCoreEntities.UserAuthenticator<Guid, ushort, Guid, Guid, Guid, Guid, Guid>(userId, type);
+    : NArchitectureCoreEntities.UserAuthenticator<Guid, short, Guid, Guid, Guid, Guid, Guid>(userId, type);

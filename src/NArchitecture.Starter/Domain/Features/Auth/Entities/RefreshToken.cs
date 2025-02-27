@@ -3,4 +3,4 @@
 namespace NArchitecture.Starter.Domain.Features.Auth.Entities;
 
 public class RefreshToken(Guid userId, string token, DateTime expiresAt, string createdByIp)
-    : NArchitectureCoreEntities.RefreshToken<Guid, ushort, Guid, Guid, Guid, Guid, Guid>(userId, token, expiresAt, createdByIp);
+    : NArchitectureCoreEntities.RefreshToken<Guid, short, Guid, Guid, Guid, Guid, Guid>(userId, token, expiresAt, createdByIp);

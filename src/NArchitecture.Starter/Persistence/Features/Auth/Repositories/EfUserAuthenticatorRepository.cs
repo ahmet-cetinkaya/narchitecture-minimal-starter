@@ -15,8 +15,8 @@ public class EfUserAuthenticatorRepository(BaseDbContext context)
         IUserAuthenticatorRepository
 {
     /// <inheritdoc/>
-    public async Task<UserAuthenticator<Guid, ushort, Guid, Guid, Guid, Guid, Guid>> AddAsync(
-        UserAuthenticator<Guid, ushort, Guid, Guid, Guid, Guid, Guid> authenticator, 
+    public async Task<UserAuthenticator<Guid, short, Guid, Guid, Guid, Guid, Guid>> AddAsync(
+        UserAuthenticator<Guid, short, Guid, Guid, Guid, Guid, Guid> authenticator, 
         CancellationToken cancellationToken)
     {
         if (authenticator == null)
@@ -31,8 +31,8 @@ public class EfUserAuthenticatorRepository(BaseDbContext context)
     }
 
     /// <inheritdoc/>
-    public async Task<UserAuthenticator<Guid, ushort, Guid, Guid, Guid, Guid, Guid>> DeleteAsync(
-        UserAuthenticator<Guid, ushort, Guid, Guid, Guid, Guid, Guid> authenticator, 
+    public async Task<UserAuthenticator<Guid, short, Guid, Guid, Guid, Guid, Guid>> DeleteAsync(
+        UserAuthenticator<Guid, short, Guid, Guid, Guid, Guid, Guid> authenticator, 
         CancellationToken cancellationToken)
     {
         if (authenticator == null)
@@ -47,7 +47,7 @@ public class EfUserAuthenticatorRepository(BaseDbContext context)
     }
 
     /// <inheritdoc/>
-    public async Task<UserAuthenticator<Guid, ushort, Guid, Guid, Guid, Guid, Guid>?> GetByIdAsync(
+    public async Task<UserAuthenticator<Guid, short, Guid, Guid, Guid, Guid, Guid>?> GetByIdAsync(
         Guid userId, 
         CancellationToken cancellationToken)
     {
@@ -63,8 +63,8 @@ public class EfUserAuthenticatorRepository(BaseDbContext context)
     }
 
     /// <inheritdoc/>
-    public async Task<UserAuthenticator<Guid, ushort, Guid, Guid, Guid, Guid, Guid>> UpdateAsync(
-        UserAuthenticator<Guid, ushort, Guid, Guid, Guid, Guid, Guid> authenticator, 
+    public async Task<UserAuthenticator<Guid, short, Guid, Guid, Guid, Guid, Guid>> UpdateAsync(
+        UserAuthenticator<Guid, short, Guid, Guid, Guid, Guid, Guid> authenticator, 
         CancellationToken cancellationToken)
     {
         if (authenticator == null)

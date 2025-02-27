@@ -10,5 +10,5 @@ namespace NArchitecture.Starter.Persistence.Features.Auth.Repositories;
 /// </summary>
 /// <param name="context">The database context.</param>
 public class EfOperationClaimRepository(BaseDbContext context)
-    : EfRepositoryBase<OperationClaim, ushort, BaseDbContext>(context),
+    : EfRepositoryBase<OperationClaim, short, BaseDbContext>(context),
         IOperationClaimRepository;
