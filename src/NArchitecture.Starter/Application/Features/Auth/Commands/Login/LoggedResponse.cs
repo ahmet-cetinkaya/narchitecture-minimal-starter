@@ -1,23 +1,15 @@
-﻿using NArchitecture.Core.Application.Responses;
-using NArchitecture.Core.Security.Enums;
-using NArchitecture.Core.Security.JWT;
+using NArchitecture.Core.Security.Abstractions.Authentication.Models;
 
-namespace Application.Features.Auth.Commands.Login;
+namespace NArchitecture.Starter.Application.Features.Auth.Commands.Login;
 
-public class LoggedResponse : IResponse
-{
-    public AccessToken? AccessToken { get; set; }
-    public NArchitecture.Starter.Domain.Features.Auth.Entities.RefreshToken? RefreshToken { get; set; }
-    public AuthenticatorType? RequiredAuthenticatorType { get; set; }
-
-    public LoggedHttpResponse ToHttpResponse()
-    {
-        return new() { AccessToken = AccessToken, RequiredAuthenticatorType = RequiredAuthenticatorType };
-    }
-
-    public class LoggedHttpResponse
-    {
-        public AccessToken? AccessToken { get; set; }
-        public AuthenticatorType? RequiredAuthenticatorType { get; set; }
-    }
-}
+/// <summary>
+/// Response returned after a successful login
+/// </summary>
+/// <param name="AccessToken">JWT access token for API authorization</param>
+/// <param name="RefreshToken">Refresh token for obtaining a new access token</param>
+/// <param name="RequiresAuthenticator">Indicates whether two-factor authentication is required</param>
+public readonly record struct LoggedResponse(
+    Token? AccessToken = null,
+    Token? RefreshToken = null,
+    bool RequiresAuthenticator = false
+);

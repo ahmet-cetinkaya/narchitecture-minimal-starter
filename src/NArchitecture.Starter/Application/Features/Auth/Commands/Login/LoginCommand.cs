@@ -1,84 +1,17 @@
-﻿using Application.Features.Auth.Rules;
-using Application.Services.AuthenticatorService;
-using Application.Services.AuthService;
-using Application.Services.UsersService;
-using MediatR;
-using NArchitecture.Core.Application.Dtos;
-using NArchitecture.Core.Security.Enums;
-using NArchitecture.Core.Security.JWT;
-using NArchitecture.Starter.Domain.Features.Auth.Entities;
+using NArchitecture.Core.Application.Pipelines.Logging;
+using NArchitecture.Core.Application.Pipelines.Transaction;
+using NArchitecture.Core.Mediator.Abstractions.CQRS;
 
-namespace Application.Features.Auth.Commands.Login;
+namespace NArchitecture.Starter.Application.Features.Auth.Commands.Login;
 
-public class LoginCommand : IRequest<LoggedResponse>
-{
-    public UserForLoginDto UserForLoginDto { get; set; }
-    public string IpAddress { get; set; }
-
-    public LoginCommand()
-    {
-        UserForLoginDto = null!;
-        IpAddress = string.Empty;
-    }
-
-    public LoginCommand(UserForLoginDto userForLoginDto, string ipAddress)
-    {
-        UserForLoginDto = userForLoginDto;
-        IpAddress = ipAddress;
-    }
-
-    public class LoginCommandHandler : IRequestHandler<LoginCommand, LoggedResponse>
-    {
-        private readonly AuthBusinessRules _authBusinessRules;
-        private readonly IAuthenticatorService _authenticatorService;
-        private readonly IAuthService _authService;
-        private readonly IUserService _userService;
-
-        public LoginCommandHandler(
-            IUserService userService,
-            IAuthService authService,
-            AuthBusinessRules authBusinessRules,
-            IAuthenticatorService authenticatorService
-        )
-        {
-            _userService = userService;
-            _authService = authService;
-            _authBusinessRules = authBusinessRules;
-            _authenticatorService = authenticatorService;
-        }
-
-        public async Task<LoggedResponse> Handle(LoginCommand request, CancellationToken cancellationToken)
-        {
-            User? user = await _userService.GetAsync(
-                predicate: u => u.Email == request.UserForLoginDto.Email,
-                cancellationToken: cancellationToken
-            );
-            await _authBusinessRules.UserShouldBeExistsWhenSelected(user);
-            await _authBusinessRules.UserPasswordShouldBeMatch(user!, request.UserForLoginDto.Password);
-
-            LoggedResponse loggedResponse = new();
-
-            if (user!.AuthenticatorType is not AuthenticatorType.None)
-            {
-                if (request.UserForLoginDto.AuthenticatorCode is null)
-                {
-                    await _authenticatorService.SendAuthenticatorCode(user);
-                    loggedResponse.RequiredAuthenticatorType = user.AuthenticatorType;
-                    return loggedResponse;
-                }
-
-                await _authenticatorService.VerifyAuthenticatorCode(user, request.UserForLoginDto.AuthenticatorCode);
-            }
-
-            AccessToken createdAccessToken = await _authService.CreateAccessToken(user);
-
-            NArchitecture.Starter.Domain.Features.Auth.Entities.RefreshToken createdRefreshToken = await _authService.CreateRefreshToken(user, request.IpAddress);
-            NArchitecture.Starter.Domain.Features.Auth.Entities.RefreshToken addedRefreshToken = await _authService.AddRefreshToken(createdRefreshToken);
-            await _authService.DeleteOldRefreshTokens(user.Id);
-
-            loggedResponse.AccessToken = createdAccessToken;
-            loggedResponse.RefreshToken = addedRefreshToken;
-            return loggedResponse;
-        }
-    }
-}
+/// <summary>
+/// Command to authenticate a user with email and password
+/// </summary>
+/// <param name="Email">User's email address</param>
+/// <param name="Password">User's password</param>
+/// <param name="AuthenticatorCode">Optional authenticator code for two-factor authentication</param>
+/// <param name="IpAddress">Client IP address for security logging</param>
+public record LoginCommand(string Email, string Password, string? AuthenticatorCode, string IpAddress)
+    : ICommand<LoggedResponse>,
+        ILoggableRequest,
+        ITransactionalRequest;

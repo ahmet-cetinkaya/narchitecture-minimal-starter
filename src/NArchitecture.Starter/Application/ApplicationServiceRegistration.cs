@@ -1,82 +1,30 @@
-﻿using System.Reflection;
-using Application.Services.AuthenticatorService;
-using Application.Services.AuthService;
-using Application.Services.UsersService;
-using FluentValidation;
-using Microsoft.Extensions.DependencyInjection;
-using NArchitecture.Core.Application.Pipelines.Authorization;
-using NArchitecture.Core.Application.Pipelines.Caching;
-using NArchitecture.Core.Application.Pipelines.Logging;
-using NArchitecture.Core.Application.Pipelines.Transaction;
-using NArchitecture.Core.Application.Pipelines.Validation;
-using NArchitecture.Core.Application.Rules;
-using NArchitecture.Core.CrossCuttingConcerns.Logging.Abstraction;
-using NArchitecture.Core.CrossCuttingConcerns.Logging.Configurations;
-using NArchitecture.Core.CrossCuttingConcerns.Logging.Serilog.File;
-using NArchitecture.Core.ElasticSearch;
-using NArchitecture.Core.ElasticSearch.Models;
-using NArchitecture.Core.Localization.Resource.Yaml.DependencyInjection;
-using NArchitecture.Core.Mailing;
-using NArchitecture.Core.Mailing.MailKit;
-using NArchitecture.Core.Security.DependencyInjection;
-using NArchitecture.Core.Security.JWT;
+﻿using Microsoft.Extensions.DependencyInjection;
+using NArchitecture.Core.Application.DependencyInjection;
+using NArchitecture.Core.Mediator;
+using NArchitecture.Core.Validation.FluentValidation.DependencyInjection;
+using NArchitecture.Starter.Application.Features.Auth;
 
-namespace Application;
+namespace NArchitecture.Starter.Application;
 
 public static class ApplicationServiceRegistration
 {
-    public static IServiceCollection AddApplicationServices(
-        this IServiceCollection services,
-        MailSettings mailSettings,
-        FileLogConfiguration fileLogConfiguration,
-        ElasticSearchConfig elasticSearchConfig,
-        TokenOptions tokenOptions
-    )
+    public static IServiceCollection AddApplicationServices(this IServiceCollection services)
     {
-        services.AddAutoMapper(Assembly.GetExecutingAssembly());
-        services.AddMediatR(configuration =>
-        {
-            configuration.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly());
-            configuration.AddOpenBehavior(typeof(AuthorizationBehavior<,>));
-            configuration.AddOpenBehavior(typeof(CachingBehavior<,>));
-            configuration.AddOpenBehavior(typeof(CacheRemovingBehavior<,>));
-            configuration.AddOpenBehavior(typeof(LoggingBehavior<,>));
-            configuration.AddOpenBehavior(typeof(RequestValidationBehavior<,>));
-            configuration.AddOpenBehavior(typeof(TransactionScopeBehavior<,>));
-        });
+        // Register NArchitecture.Core.Mediator service
+        _ = services.AddMediator();
 
-        services.AddSubClassesOfType(Assembly.GetExecutingAssembly(), typeof(BaseBusinessRules));
+        // Register NArchitecture.Core.Mapping.Abstractions.IMapper services for all AutoMapper.Profile services
+        _ = services.AddAutoMapper(typeof(ApplicationServiceRegistration).Assembly);
 
-        services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
+        // Register NArchitecture.Core.Validation.Abstractions.IValidator<T> services for all FluentValidation.IValidator<T> services
+        _ = services.AddFluentValidation(assemblies: [typeof(ApplicationServiceRegistration).Assembly]);
 
-        services.AddSingleton<IMailService, MailKitMailService>(_ => new MailKitMailService(mailSettings));
-        services.AddSingleton<ILogger, SerilogFileLogger>(_ => new SerilogFileLogger(fileLogConfiguration));
-        services.AddSingleton<IElasticSearch, ElasticSearchManager>(_ => new ElasticSearchManager(elasticSearchConfig));
+        // Register NArchitecture.Core.Application.IBusinessRules services
+        _ = services.AddBusinessRules();
 
-        services.AddScoped<IAuthService, AuthManager>();
-        services.AddScoped<IAuthenticatorService, AuthenticatorManager>();
-        services.AddScoped<IUserService, UserManager>();
+        // Register features
+        _ = services.AddAuthFeature();
 
-        services.AddYamlResourceLocalization();
-
-        services.AddSecurityServices<Guid, int, Guid>(tokenOptions);
-
-        return services;
-    }
-
-    public static IServiceCollection AddSubClassesOfType(
-        this IServiceCollection services,
-        Assembly assembly,
-        Type type,
-        Func<IServiceCollection, Type, IServiceCollection>? addWithLifeCycle = null
-    )
-    {
-        var types = assembly.GetTypes().Where(t => t.IsSubclassOf(type) && type != t).ToList();
-        foreach (Type? item in types)
-            if (addWithLifeCycle == null)
-                services.AddScoped(item);
-            else
-                addWithLifeCycle(services, type);
         return services;
     }
 }
