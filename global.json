@@ -9,6 +9,7 @@
         "analyze:fix": "dotnet format analyzers && dotnet roslynator fix --exclude tests/**/**/*",
         "analyze:security": "dotnet security-scan NArchitecture.Starter.sln",
         "build": "dotnet build --configuration Release",
+        "clean": "dotnet clean && find . -type d -name bin -exec rm -rf {} + && find . -type d -name obj -exec rm -rf {} + && dotnet restore && dotnet build --configuration Release",
         "format": "dotnet csharpier .",
         "package:update-all": "dotnet outdated -u",
         "test": "dotnet test --configuration Release",
