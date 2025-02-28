@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using NArchitecture.Starter.Application.Features.Auth.Constants;
+using NArchitecture.Starter.Application.Features.Auth.Models;
 using NArchitecture.Starter.Domain.Features.Auth.Entities;
 using NArchitecture.Starter.Persistence.Features.Auth.Seeds;
 

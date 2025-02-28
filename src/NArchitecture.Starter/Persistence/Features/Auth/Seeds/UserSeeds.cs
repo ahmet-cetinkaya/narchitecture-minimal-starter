@@ -1,6 +1,6 @@
 using System.Security.Cryptography;
 using System.Text;
-using NArchitecture.Starter.Application.Features.Auth.Constants;
+using NArchitecture.Starter.Application.Features.Auth.Models;
 using NArchitecture.Starter.Domain.Features.Auth.Entities;
 
 namespace NArchitecture.Starter.Persistence.Features.Auth.Seeds;

@@ -28,6 +28,9 @@
       Include="../../NArchitecture.Core/src/Validation.FluentValidation.DependencyInjection/NArchitecture.Core.Validation.FluentValidation.DependencyInjection.csproj" />
     <ProjectReference
       Include="../../NArchitecture.Core/src/Mapper.AutoMapper.DependencyInjection/NArchitecture.Core.Mapper.AutoMapper.DependencyInjection.csproj" />
+    <ProjectReference Include="../../NArchitecture.Core/src/Localization.Abstractions/NArchitecture.Core.Localization.Abstractions.csproj" />
+    <ProjectReference
+      Include="../../NArchitecture.Core/src/Localization.Resource.Yaml.DependencyInjection/NArchitecture.Core.Localization.Resource.Yaml.DependencyInjection.csproj" />
   </ItemGroup>
 
   <!-- Package References -->
