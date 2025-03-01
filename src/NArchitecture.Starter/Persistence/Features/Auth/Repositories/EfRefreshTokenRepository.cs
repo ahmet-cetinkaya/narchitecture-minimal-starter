@@ -20,12 +20,24 @@ public class EfRefreshTokenRepository(BaseDbContext context)
         CancellationToken cancellationToken
     )
     {
+        // Convert generic RefreshToken to concrete implementation if needed
         RefreshToken entity =
             refreshTokenEntity as RefreshToken
-            ?? throw new ArgumentException(
-                "Cannot process the given refresh token type. Expected concrete RefreshToken implementation.",
-                nameof(refreshTokenEntity)
-            );
+            ?? new RefreshToken(
+                refreshTokenEntity.UserId,
+                refreshTokenEntity.Token,
+                refreshTokenEntity.ExpiresAt,
+                refreshTokenEntity.CreatedByIp
+            )
+            {
+                Id = refreshTokenEntity.Id,
+                RevokedAt = refreshTokenEntity.RevokedAt,
+                ReplacedByToken = refreshTokenEntity.ReplacedByToken,
+                RevokedByIp = refreshTokenEntity.RevokedByIp,
+                ReasonRevoked = refreshTokenEntity.ReasonRevoked,
+                CreatedAt = refreshTokenEntity.CreatedAt,
+                UpdatedAt = refreshTokenEntity.UpdatedAt,
+            };
 
         RefreshToken addedEntity = await base.AddAsync(entity, cancellationToken);
         return addedEntity;
@@ -79,12 +91,19 @@ public class EfRefreshTokenRepository(BaseDbContext context)
         CancellationToken cancellationToken
     )
     {
+        // Convert generic RefreshToken to concrete implementation if needed
         RefreshToken entity =
             token as RefreshToken
-            ?? throw new ArgumentException(
-                "Cannot process the given refresh token type. Expected concrete RefreshToken implementation.",
-                nameof(token)
-            );
+            ?? new RefreshToken(token.UserId, token.Token, token.ExpiresAt, token.CreatedByIp)
+            {
+                Id = token.Id,
+                RevokedAt = token.RevokedAt,
+                ReplacedByToken = token.ReplacedByToken,
+                RevokedByIp = token.RevokedByIp,
+                ReasonRevoked = token.ReasonRevoked,
+                CreatedAt = token.CreatedAt,
+                UpdatedAt = token.UpdatedAt,
+            };
 
         RefreshToken updatedEntity = await base.UpdateAsync(entity, cancellationToken);
         return updatedEntity;

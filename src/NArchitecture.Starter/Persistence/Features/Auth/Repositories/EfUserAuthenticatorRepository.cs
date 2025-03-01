@@ -16,14 +16,19 @@ public class EfUserAuthenticatorRepository(BaseDbContext context)
 {
     /// <inheritdoc/>
     public async Task<UserAuthenticator<Guid, short, Guid, Guid, Guid, Guid, Guid>> AddAsync(
-        UserAuthenticator<Guid, short, Guid, Guid, Guid, Guid, Guid> authenticator, 
-        CancellationToken cancellationToken)
+        UserAuthenticator<Guid, short, Guid, Guid, Guid, Guid, Guid> authenticator,
+        CancellationToken cancellationToken
+    )
     {
         if (authenticator == null)
             throw new ArgumentNullException(nameof(authenticator), "User authenticator cannot be null");
-        
-        UserAuthenticator entity = authenticator as UserAuthenticator 
-            ?? throw new ArgumentException("Cannot process the given authenticator type. Expected concrete UserAuthenticator implementation.", nameof(authenticator));
+
+        UserAuthenticator entity =
+            authenticator as UserAuthenticator
+            ?? throw new ArgumentException(
+                "Cannot process the given authenticator type. Expected concrete UserAuthenticator implementation.",
+                nameof(authenticator)
+            );
 
         // Use the base AddAsync method
         var addedEntity = await base.AddAsync(entity, cancellationToken);
@@ -32,14 +37,19 @@ public class EfUserAuthenticatorRepository(BaseDbContext context)
 
     /// <inheritdoc/>
     public async Task<UserAuthenticator<Guid, short, Guid, Guid, Guid, Guid, Guid>> DeleteAsync(
-        UserAuthenticator<Guid, short, Guid, Guid, Guid, Guid, Guid> authenticator, 
-        CancellationToken cancellationToken)
+        UserAuthenticator<Guid, short, Guid, Guid, Guid, Guid, Guid> authenticator,
+        CancellationToken cancellationToken
+    )
     {
         if (authenticator == null)
             throw new ArgumentNullException(nameof(authenticator), "User authenticator cannot be null");
-        
-        UserAuthenticator entity = authenticator as UserAuthenticator 
-            ?? throw new ArgumentException("Cannot process the given authenticator type. Expected concrete UserAuthenticator implementation.", nameof(authenticator));
+
+        UserAuthenticator entity =
+            authenticator as UserAuthenticator
+            ?? throw new ArgumentException(
+                "Cannot process the given authenticator type. Expected concrete UserAuthenticator implementation.",
+                nameof(authenticator)
+            );
 
         // Use the base DeleteAsync method with permanent deletion
         var deletedEntity = await base.DeleteAsync(entity, true, cancellationToken);
@@ -48,8 +58,9 @@ public class EfUserAuthenticatorRepository(BaseDbContext context)
 
     /// <inheritdoc/>
     public async Task<UserAuthenticator<Guid, short, Guid, Guid, Guid, Guid, Guid>?> GetByIdAsync(
-        Guid userId, 
-        CancellationToken cancellationToken)
+        Guid userId,
+        CancellationToken cancellationToken
+    )
     {
         if (userId == Guid.Empty)
             throw new ArgumentException("User ID cannot be empty.", nameof(userId));
@@ -64,14 +75,19 @@ public class EfUserAuthenticatorRepository(BaseDbContext context)
 
     /// <inheritdoc/>
     public async Task<UserAuthenticator<Guid, short, Guid, Guid, Guid, Guid, Guid>> UpdateAsync(
-        UserAuthenticator<Guid, short, Guid, Guid, Guid, Guid, Guid> authenticator, 
-        CancellationToken cancellationToken)
+        UserAuthenticator<Guid, short, Guid, Guid, Guid, Guid, Guid> authenticator,
+        CancellationToken cancellationToken
+    )
     {
         if (authenticator == null)
             throw new ArgumentNullException(nameof(authenticator), "User authenticator cannot be null");
-        
-        UserAuthenticator entity = authenticator as UserAuthenticator 
-            ?? throw new ArgumentException("Cannot process the given authenticator type. Expected concrete UserAuthenticator implementation.", nameof(authenticator));
+
+        UserAuthenticator entity =
+            authenticator as UserAuthenticator
+            ?? throw new ArgumentException(
+                "Cannot process the given authenticator type. Expected concrete UserAuthenticator implementation.",
+                nameof(authenticator)
+            );
 
         // Use the base UpdateAsync method
         var updatedEntity = await base.UpdateAsync(entity, cancellationToken);
