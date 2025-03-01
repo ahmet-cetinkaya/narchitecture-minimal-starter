@@ -10,3 +10,4 @@ This document will guide you through the process of creating a new feature in th
 - [📝 Implementing Use Cases in Application Layer](./Implementing%20Use%20Cases%20in%20Application%20Layer.md)
 - [💾 Configure Context in Persistence Layer](./Configure%20Context%20in%20Persistence%20Layer.md)
 - [🔍 Implementing Repositories in Persistence Layer](./Implementing%20Repositories%20in%20Persistence%20Layer.md)
+- [🌐 Implementing API Endpoints in WebApi](./Implementing%20API%20Endpoints%20in%20WebApi.md)
