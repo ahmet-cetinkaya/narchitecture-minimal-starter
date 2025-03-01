@@ -31,6 +31,8 @@
     <ProjectReference Include="../../NArchitecture.Core/src/Localization.Abstractions/NArchitecture.Core.Localization.Abstractions.csproj" />
     <ProjectReference
       Include="../../NArchitecture.Core/src/Localization.Resource.Yaml.DependencyInjection/NArchitecture.Core.Localization.Resource.Yaml.DependencyInjection.csproj" />
+        <ProjectReference
+      Include="../../NArchitecture.Core/src/Mailing.MailKit/NArchitecture.Core.Mailing.MailKit.csproj" />
   </ItemGroup>
 
   <!-- Package References -->
