@@ -16,9 +16,9 @@
   <!-- TODO: Remove project reference -->
   <ItemGroup>
     <ProjectReference
-      Include="../../NArchitecture.Core/src/Persistence.Abstractions/NArchitecture.Core.Persistence.Abstractions.csproj" />
+      Include="../../../NArchitecture.Core/src/Persistence.Abstractions/NArchitecture.Core.Persistence.Abstractions.csproj" />
     <ProjectReference
-      Include="../../NArchitecture.Core/src/Security.Abstractions/NArchitecture.Core.Security.Abstractions.csproj" />
+      Include="../../../NArchitecture.Core/src/Security.Abstractions/NArchitecture.Core.Security.Abstractions.csproj" />
   </ItemGroup>
 
 </Project>

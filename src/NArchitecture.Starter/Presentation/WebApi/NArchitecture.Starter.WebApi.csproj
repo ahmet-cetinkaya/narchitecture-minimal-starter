@@ -7,9 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="../Application/NArchitecture.Starter.Application.csproj" />
-    <ProjectReference Include="../Persistence/NArchitecture.Starter.Persistence.csproj" />
-    <ProjectReference Include="../../NArchitecture.Core/src/Security.WebApi/NArchitecture.Core.Security.WebApi.csproj" />
+    <ProjectReference Include="../../Core/Application/NArchitecture.Starter.Application.csproj" />
+    <ProjectReference Include="../../Infrastructure/Persistence/NArchitecture.Starter.Persistence.csproj" />
+
+    <!-- TODO: remove -->
+    <ProjectReference Include="../../../NArchitecture.Core/src/Security.WebApi/NArchitecture.Core.Security.WebApi.csproj" />
   </ItemGroup>
 
   <ItemGroup>
