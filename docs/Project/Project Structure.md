@@ -3,42 +3,67 @@
 # 📂 Project Structure
 This document provides an overview of the project structure and the different layers within the NArchitecture framework. Understanding the structure will help you navigate the codebase and contribute effectively.
 
-NArchitecture is inspired by Clean Architecture, which emphasizes separation of concerns and promotes a scalable and maintainable codebase.
+NArchitecture is inspired by Clean Architecture, which emphasizes separation of concerns and promotes a scalable and maintainable codebase. This architecture allows for independent development, testability, and easy adaptation to changing requirements or technologies.
 
-## 🏗️ Layers
+## 🏗️ Folder Structure
+The project is organized into the following main folders, reflecting the architectural layers of the application:
 
-### 1. **Domain Layer**
-The Domain Layer contains the core business logic and domain entities. It is independent of any external dependencies and focuses on the business rules and domain-specific logic.
+```
+NArchitecture.Starter/
+├── Core/
+│   ├── Application/
+│   └── Domain/
+├── Infrastructure/
+│   └── Persistence/
+└── Presentation/
+    └── WebApi/
+```
 
-- **Entities**: Represent the core business objects.
-- **Value Objects**: Immutable objects that represent a concept in the domain.
-- **Aggregates**: Group related entities and value objects.
+## 🏗️ Architectural Layers
 
-### 2. **Application Layer**
-The Application Layer coordinates the application logic and orchestrates the use cases. It depends on the Domain Layer and provides services to the Presentation Layer.
+### 1. **Core**
+The Core folder contains the central parts of the application. This is the heart of the software system and houses the domain models, entities, and application services.
 
-- **Use Cases**: Application-specific command and queries with business logic.
-- **DTOs**: Data Transfer Objects for communication between layers.
-- **Services**: Application services that handle use cases.
-- **Repositories**: Interfaces for data access.
+#### 1.1 **Domain Layer**
+The Domain Layer forms the foundation of the application, containing the entity definitions and domain models that represent the core concepts of the business domain. This layer is completely isolated from external concerns and focuses on defining the structure and relationships of business objects.
 
-### 3. **Persistence Layer**
-The Persistence Layer provides implementations for the repository interfaces defined in the Application Layer. It includes data access and database configurations.
+- **Entities**: Represent the core business objects with identity and lifecycle (e.g., User, Product, Order). These define the structure and properties of primary domain concepts.
+- **Value Objects**: Immutable objects defined by their attributes rather than identity (e.g., Address, Money, DateRange). They are used to encapsulate domain concepts that don't need identity tracking.
+- **Aggregates**: Clusters of domain objects that can be treated as a single unit, with one entity serving as the aggregate root. They define transactional consistency boundaries within the domain.
+- **Domain Models**: Define the structure and relationships of objects within the domain without necessarily containing complex business logic.
 
-- **Repositories**: Implementations of the repository interfaces.
-- **Data Access**: Database context and configurations.
+#### 1.2 **Application Layer**
+The Application Layer serves as the primary container for business logic and rules. It orchestrates and coordinates the domain objects to perform specific application tasks and implements the core business functionality. This layer defines the jobs the software is supposed to do and contains the use cases of the application.
 
-### 4. **Infrastructure Layer**
-The Infrastructure Layer provides implementations for cross-cutting concerns and external services. It includes logging, caching, and other infrastructure concerns.
+- **Use Cases**: Specific business operations (commands and queries) that implement the business logic. Each use case typically represents one specific action a user can perform.
+- **Business Logic**: The core rules, validations, and workflows that define how the application should behave.
+- **DTOs (Data Transfer Objects)**: Simplified data structures for transferring data between layers, particularly from the application layer to the presentation layer.
+- **Events**: Domain events that represent significant changes or occurrences within the domain and can trigger side effects or additional processing.
+- **Services**: Application services that implement business logic by coordinating between domain objects and infrastructure services.
+- **Repositories Interfaces**: Contracts defining how to access and persist domain objects without specifying the actual implementation details.
+- **Validators**: Components that ensure incoming data meets required business rules before processing.
+- **Mappers**: Objects responsible for transforming data between different representations across layer boundaries.
 
-- **Logging**: Logging implementations.
-- **Caching**: Distributed caching configurations.
-- **External Services**: Integrations with external systems.
+### 2. **Infrastructure**
+The Infrastructure folder contains implementations for interfaces defined in the core layers and provides technical capabilities to the system. This layer handles external concerns like databases, file systems, third-party APIs, and other infrastructure-related aspects that support the inner layers.
 
-### 5. **Presentation Layer**
-The Presentation Layer handles the user interface and API endpoints. It depends on the Application Layer to execute use cases and present the results. This layer can include various types of user interfaces such as Web API, Web App, CLI, or MAUI etc.
+#### 2.1 **Persistence Layer**
+The Persistence Layer is responsible for data persistence and retrieval. It implements the repository interfaces defined in the Application Layer and handles all database-related operations.
 
-- **Controllers**: API endpoints for handling HTTP requests.
-- **UI**: User interface components (if applicable).
-- **ViewModels**: Data models for the views.
-- **Views**: User interface components (if applicable).
+- **Repositories**: Concrete implementations of the repository interfaces that handle data access operations and transform between domain objects and database entities.
+- **Data Access**: Database contexts, configurations, and connection management that provide a bridge between the domain model and the database schema.
+- **Migrations**: Database versioning and schema evolution tools that manage the database structure changes over time.
+- **Query Objects**: Specialized classes for complex or optimized data access operations.
+- **ORM Configurations**: Object-Relational Mapping configurations that define how domain objects map to database tables and columns.
+
+### 3. **Presentation**
+The Presentation Layer is the entry point to the application, handling user interactions and formatting responses. It depends on the Application Layer to execute use cases and present the results in an appropriate format. This layer adapts to the different delivery mechanisms without affecting the core application logic.
+
+#### 3.1 **WebApi**
+The WebApi is a specific implementation of the Presentation Layer that exposes the application functionality through HTTP endpoints.
+
+- **Controllers**: API endpoints that handle HTTP requests, validate inputs, invoke the appropriate use cases, and format HTTP responses.
+- **Middleware**: Request processing components that handle cross-cutting concerns like authentication, logging, error handling, and request/response transformation.
+- **Configuration**: Application settings, dependency injection setup, and service registrations that configure the web service.
+- **Filters**: Components that intercept the request/response pipeline to implement cross-cutting concerns like exception handling, action filtering, and result formatting.
+- **API Documentation**: Swagger/OpenAPI specifications and configurations that provide interactive documentation for the API endpoints.
