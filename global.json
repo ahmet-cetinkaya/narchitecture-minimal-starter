@@ -15,6 +15,6 @@
         "test": "dotnet test --configuration Release",
         "test:ci:dotnet": "act --container-architecture linux/amd64 -P ubuntu-latest=catthehacker/ubuntu:act-latest -W .github/workflows/dotnet.yml",
         "tool:update-all": "dotnet tool update --all",
-        "run": "dotnet run --project src/NArchitecture.Starter/WebApi/NArchitecture.Starter.WebApi.csproj"
+        "run": "dotnet run --project src/NArchitecture.Starter/Presentation/WebApi/NArchitecture.Starter.WebApi.csproj"
     }
 }
