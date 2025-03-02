@@ -1,7 +1,3 @@
-using NArchitecture.Core.Mailing.MailKit.Models;
-using NArchitecture.Core.Security.Abstractions.Authentication;
-using NArchitecture.Core.Security.Authentication;
-using NArchitecture.Core.Security.Authenticator;
 using NArchitecture.Starter.Application;
 using NArchitecture.Starter.Application.Features.Auth.Models;
 using NArchitecture.Starter.Persistence;

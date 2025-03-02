@@ -23,8 +23,11 @@ public class UserGroupConfiguration : IEntityTypeConfiguration<UserGroup>
             .HasDatabaseName("IX_UserGroup_Name_Active");
 
         // Configure relationships
-        _ = builder.HasMany<UserInGroup>().WithOne().HasForeignKey(uig => uig.GroupId);
-        _ = builder.HasMany<UserGroupOperationClaim>().WithOne().HasForeignKey(ugoc => ugoc.UserGroupId);
+        _ = builder.HasMany(ug => ug.UserInGroups).WithOne(uig => uig.UserGroup).HasForeignKey(uig => uig.UserGroupId);
+        _ = builder
+            .HasMany(ug => ug.UserGroupOperationClaims)
+            .WithOne(ugoc => ugoc.UserGroup)
+            .HasForeignKey(ugoc => ugoc.UserGroupId);
 
         // Ignore base type
         _ = builder.HasBaseType((string)null!);

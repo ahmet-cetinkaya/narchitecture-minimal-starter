@@ -31,9 +31,9 @@ public class UserConfiguration(AdministratorCredentialConfiguration administrato
             .HasDatabaseName("IX_User_Email_Active");
 
         // Configure relationships with proper cascade delete
-        _ = builder.HasMany(u => u.UserOperationClaims).WithOne().HasForeignKey(uoc => uoc.UserId);
-        _ = builder.HasMany(u => u.RefreshTokens).WithOne().HasForeignKey(rt => rt.UserId);
-        _ = builder.HasMany(u => u.UserAuthenticators).WithOne().HasForeignKey(ua => ua.UserId);
+        _ = builder.HasMany(u => u.UserOperationClaims).WithOne(uoc => uoc.User).HasForeignKey(uoc => uoc.UserId);
+        _ = builder.HasMany(u => u.RefreshTokens).WithOne(rt => rt.User).HasForeignKey(rt => rt.UserId);
+        _ = builder.HasMany(u => u.UserAuthenticators).WithOne(ua => ua.User).HasForeignKey(ua => ua.UserId);
 
         // Seed user data
         _ = builder.HasData(UserSeeds.CreateSeeds(administratorCredentialConfiguration));

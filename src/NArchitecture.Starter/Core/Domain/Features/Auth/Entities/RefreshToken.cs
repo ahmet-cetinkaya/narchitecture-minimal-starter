@@ -8,4 +8,6 @@ public class RefreshToken(Guid userId, string token, DateTime expiresAt, string 
     [Obsolete("This constructor is for ORM, mapper etc.. Do not use it in the code.", true)]
     public RefreshToken()
         : this(default, default!, default, default!) { }
+
+    public virtual User? User { get; set; }
 }

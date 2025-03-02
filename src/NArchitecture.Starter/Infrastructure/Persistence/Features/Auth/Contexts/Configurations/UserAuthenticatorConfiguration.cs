@@ -30,7 +30,7 @@ public class UserAuthenticatorConfiguration(IAuthenticatorConfiguration authenti
             .HasDatabaseName("IX_UserAuthenticator_UserId_Type_Active");
 
         // Configure the relationship with User
-        _ = builder.HasOne<User>().WithMany().HasForeignKey(ua => ua.UserId);
+        _ = builder.HasOne(ua => ua.User).WithMany(u => u.UserAuthenticators).HasForeignKey(ua => ua.UserId);
 
         // Ignore base type
         _ = builder.HasBaseType((string)null!);

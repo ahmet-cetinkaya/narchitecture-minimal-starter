@@ -28,7 +28,7 @@ public class RefreshTokenConfiguration : IEntityTypeConfiguration<RefreshToken>
             .HasDatabaseName("IX_RefreshToken_Token_Active");
 
         // Configure the relationship with User
-        _ = builder.HasOne<User>().WithMany().HasForeignKey(rt => rt.UserId);
+        _ = builder.HasOne(rt => rt.User).WithMany(u => u.RefreshTokens).HasForeignKey(rt => rt.UserId);
 
         // Ignore base type
         _ = builder.HasBaseType((string)null!);

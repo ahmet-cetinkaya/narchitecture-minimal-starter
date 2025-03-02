@@ -30,8 +30,14 @@ public class UserGroupOperationClaimConfiguration : IEntityTypeConfiguration<Use
             .HasDatabaseName("IX_UserGroupOperationClaim_GroupId_Active");
 
         // Configure relationships
-        _ = builder.HasOne<UserGroup>().WithMany().HasForeignKey(ugoc => ugoc.UserGroupId);
-        _ = builder.HasOne<OperationClaim>().WithMany().HasForeignKey(ugoc => ugoc.OperationClaimId);
+        _ = builder
+            .HasOne(ugoc => ugoc.UserGroup)
+            .WithMany(ug => ug.UserGroupOperationClaims)
+            .HasForeignKey(ugoc => ugoc.UserGroupId);
+        _ = builder
+            .HasOne(ugoc => ugoc.OperationClaim)
+            .WithMany(oc => oc.UserGroupOperationClaims)
+            .HasForeignKey(ugoc => ugoc.OperationClaimId);
 
         // Ignore base type
         _ = builder.HasBaseType((string)null!);

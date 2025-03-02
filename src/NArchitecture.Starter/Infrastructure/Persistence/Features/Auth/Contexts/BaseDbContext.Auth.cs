@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using NArchitecture.Core.Security.Abstractions.Authenticator;
 using NArchitecture.Starter.Application.Features.Auth.Models;
@@ -18,7 +18,7 @@ public partial class BaseDbContext : DbContext
     public DbSet<UserInGroup> UserInGroups { get; set; }
     public DbSet<UserOperationClaim> UserOperationClaims { get; set; }
 
-    private void applyAuthCustomConfigurations(ModelBuilder modelBuilder)
+    protected ModelBuilder ApplyAuthCustomConfigurations(ModelBuilder modelBuilder)
     {
         _ = modelBuilder.ApplyConfiguration(
             configuration: new UserConfiguration(
@@ -30,5 +30,7 @@ public partial class BaseDbContext : DbContext
                 authenticatorConfiguration: serviceProvider.GetRequiredService<IAuthenticatorConfiguration>()
             )
         );
+
+        return modelBuilder;
     }
 }

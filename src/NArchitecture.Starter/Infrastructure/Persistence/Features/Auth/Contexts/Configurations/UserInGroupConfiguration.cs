@@ -16,7 +16,7 @@ public class UserInGroupConfiguration : IEntityTypeConfiguration<UserInGroup>
             .HasIndex(uig => new
             {
                 uig.UserId,
-                uig.GroupId,
+                uig.UserGroupId,
                 uig.DeletedAt,
             })
             .HasFilter("\"DeletedAt\" IS NULL")
@@ -31,13 +31,13 @@ public class UserInGroupConfiguration : IEntityTypeConfiguration<UserInGroup>
 
         // Create index for faster lookup of all users in a group
         _ = builder
-            .HasIndex(uig => new { uig.GroupId, uig.DeletedAt })
+            .HasIndex(uig => new { uig.UserGroupId, uig.DeletedAt })
             .HasFilter("\"DeletedAt\" IS NULL")
             .HasDatabaseName("IX_UserInGroup_GroupId_Active");
 
         // Configure relationships with navigation properties
-        _ = builder.HasOne<User>().WithMany().HasForeignKey(uig => uig.UserId);
-        _ = builder.HasOne<UserGroup>().WithMany().HasForeignKey(uig => uig.GroupId);
+        _ = builder.HasOne(uig => uig.User).WithMany(u => u.UserInGroups).HasForeignKey(uig => uig.UserId);
+        _ = builder.HasOne(u => u.UserGroup).WithMany(ug => ug.UserInGroups).HasForeignKey(uig => uig.UserGroupId);
 
         // Ignore base type
         _ = builder.HasBaseType((string)null!);

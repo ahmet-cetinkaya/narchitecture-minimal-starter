@@ -1,10 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using NArchitecture.Core.Mediator.Abstractions.CQRS;
-using NArchitecture.Core.Security.Abstractions.Authentication;
 using NArchitecture.Core.Security.Abstractions.Authentication.Models;
-using NArchitecture.Core.Security.Abstractions.Authenticator;
-using NArchitecture.Starter.Application.Features.Auth.Repositories;
 using NArchitecture.Starter.Application.Features.Auth.Rules;
+using NArchitecture.Starter.Application.Features.Auth.Services.Abstractions;
 using NArchitecture.Starter.Domain.Features.Auth.Entities;
 
 namespace NArchitecture.Starter.Application.Features.Auth.Commands.Login;
@@ -14,8 +12,8 @@ namespace NArchitecture.Starter.Application.Features.Auth.Commands.Login;
 /// </summary>
 public class LoginCommandHandler(
     IUserRepository userRepository,
-    IAuthenticationService<short, Guid, Guid, Guid, Guid, Guid, Guid> authenticationService,
-    IAuthenticator<short, Guid, Guid, Guid, Guid, Guid, Guid> authenticator
+    IAuthenticationService authenticationService,
+    IAuthenticatorService authenticatorService
 ) : ICommandHandler<LoginCommand, LoggedResponse>
 {
     public async Task<LoggedResponse> Handle(LoginCommand request, CancellationToken cancellationToken)
@@ -35,13 +33,13 @@ public class LoginCommandHandler(
         if (verifiedAuthenticator is not null && request.AuthenticatorCode is null)
         {
             string? destination = AuthBusinessRules.GetAuthenticatorDestination(verifiedAuthenticator, user!);
-            await authenticator.AttemptAsync(user!.Id, destination, cancellationToken);
+            await authenticatorService.AttemptAsync(user!.Id, destination, cancellationToken);
 
             return new LoggedResponse(AccessToken: null, RefreshToken: null, RequiresAuthenticator: true);
         }
         // Verify authenticator code if user has verified authenticator and code is provided
         if (verifiedAuthenticator is not null && request.AuthenticatorCode is not null)
-            await authenticator.VerifyAsync(user!.Id, request.AuthenticatorCode, cancellationToken);
+            await authenticatorService.VerifyAsync(user!.Id, request.AuthenticatorCode, cancellationToken);
 
         return new LoggedResponse(AccessToken: authResponse.AccessToken, RefreshToken: authResponse.RefreshToken);
     }

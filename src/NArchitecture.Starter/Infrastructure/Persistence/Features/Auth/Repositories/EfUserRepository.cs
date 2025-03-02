@@ -2,7 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using NArchitecture.Core.Persistence.EntityFramework.Repositories;
 using NArchitecture.Core.Security.Abstractions.Authentication.Entities;
 using NArchitecture.Core.Security.Abstractions.Authorization.Entities;
-using NArchitecture.Starter.Application.Features.Auth.Repositories;
+using NArchitecture.Starter.Application.Features.Auth.Services.Abstractions;
 using NArchitecture.Starter.Domain.Features.Auth.Entities;
 using NArchitecture.Starter.Persistence.Shared.Contexts;
 
@@ -49,10 +49,10 @@ public class EfUserRepository(BaseDbContext context) : EfRepositoryBase<User, Gu
             return Array.Empty<OperationClaim<short>>();
 
         // Get user's direct operation claims
-        List<OperationClaim<short>> userOperationClaims = user.UserOperationClaims!.Select(uoc => uoc.OperationClaim).ToList()!;
+        List<OperationClaim> userOperationClaims = user.UserOperationClaims!.Select(uoc => uoc.OperationClaim).ToList()!;
 
         // Get user's group operation claims
-        List<OperationClaim<short>> userGroupOperationClaims = user.UserInGroups!.SelectMany(uig =>
+        List<OperationClaim> userGroupOperationClaims = user.UserInGroups!.SelectMany(uig =>
                 uig.UserGroup!.UserGroupOperationClaims!.Select(ugoc => ugoc.OperationClaim)
             )
             .ToList()!;

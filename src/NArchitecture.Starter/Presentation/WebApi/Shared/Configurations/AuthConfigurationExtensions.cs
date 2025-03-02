@@ -68,6 +68,9 @@ public static class AuthConfigurationExtensions
         return jwtConfiguration;
     }
 
+    /// <summary>
+    /// Gets the administrator credential configuration from application settings.
+    /// </summary>
     public static AdministratorCredentialConfiguration GetAdministratorCredentialConfiguration(this IConfiguration configuration)
     {
         AdministratorCredentialConfiguration administratorCredentialConfiguration =
@@ -77,6 +80,9 @@ public static class AuthConfigurationExtensions
         return administratorCredentialConfiguration;
     }
 
+    /// <summary>
+    /// Gets the authenticator configuration from application settings.
+    /// </summary>
     public static IAuthenticatorConfiguration GetAuthenticatorConfiguration(this IConfiguration configuration)
     {
         DefaultAuthenticatorConfiguration authenticatorConfiguration =

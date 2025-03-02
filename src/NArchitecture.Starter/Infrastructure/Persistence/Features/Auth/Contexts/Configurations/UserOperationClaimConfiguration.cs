@@ -31,8 +31,11 @@ public class UserOperationClaimConfiguration : IEntityTypeConfiguration<UserOper
             .HasDatabaseName("IX_UserOperationClaim_UserId_Active");
 
         // Configure relationships with navigation properties
-        _ = builder.HasOne<User>().WithMany().HasForeignKey(uoc => uoc.UserId);
-        _ = builder.HasOne<OperationClaim>().WithMany().HasForeignKey(uoc => uoc.OperationClaimId);
+        _ = builder.HasOne(uoc => uoc.User).WithMany(u => u.UserOperationClaims).HasForeignKey(uoc => uoc.UserId);
+        _ = builder
+            .HasOne(uoc => uoc.OperationClaim)
+            .WithMany(oc => oc.UserOperationClaims)
+            .HasForeignKey(uoc => uoc.OperationClaimId);
 
         // Seed admin user's operation claims
         _ = builder.HasData(UserOperationClaimSeeds.CreateSeeds());

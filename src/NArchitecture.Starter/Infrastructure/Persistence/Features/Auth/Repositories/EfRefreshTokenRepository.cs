@@ -1,6 +1,6 @@
 using NArchitecture.Core.Persistence.EntityFramework.Repositories;
 using NArchitecture.Core.Security.Abstractions.Authentication.Entities;
-using NArchitecture.Starter.Application.Features.Auth.Repositories;
+using NArchitecture.Starter.Application.Features.Auth.Services.Abstractions;
 using NArchitecture.Starter.Domain.Features.Auth.Entities;
 using NArchitecture.Starter.Persistence.Shared.Contexts;
 

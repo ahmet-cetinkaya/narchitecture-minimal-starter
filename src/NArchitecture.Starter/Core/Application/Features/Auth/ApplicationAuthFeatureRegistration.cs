@@ -1,53 +1,108 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using NArchitecture.Core.Mailing.Abstractions;
 using NArchitecture.Core.Mailing.MailKit;
-using NArchitecture.Core.Security.Abstractions.Authentication;
-using NArchitecture.Core.Security.Abstractions.Authenticator;
-using NArchitecture.Core.Security.Abstractions.Authorization;
-using NArchitecture.Core.Security.Abstractions.Cryptography.Generation;
-using NArchitecture.Core.Security.Authentication;
-using NArchitecture.Core.Security.Authenticator;
-using NArchitecture.Core.Security.Authorization;
-using NArchitecture.Core.Security.Cryptography.Generation;
 using NArchitecture.Starter.Application.Features.Auth.Models;
+using NArchitecture.Starter.Application.Features.Auth.Services;
+using NArchitecture.Starter.Application.Features.Auth.Services.Abstractions;
+using NArchitectureCoreSecurity = NArchitecture.Core.Security;
 
 namespace NArchitecture.Starter.Application.Features.Auth;
 
 public static partial class ApplicationAuthFeatureRegistration
 {
+    /// <summary>
+    /// Registers all authentication and authorization services
+    /// </summary>
     public static IServiceCollection AddAuthFeature(this IServiceCollection services, AuthConfiguration configuration)
     {
-        AddCoreServices(services, configuration);
+        return services
+            .AddAuthenticationServices(configuration)
+            .AddAuthorizationServices()
+            .AddAuthenticatorServices(configuration)
+            .AddCryptographyServices()
+            .AddMailingServices(configuration);
+    }
+
+    /// <summary>
+    /// Registers JWT authentication services
+    /// </summary>
+    private static IServiceCollection AddAuthenticationServices(this IServiceCollection services, AuthConfiguration configuration)
+    {
+        _ = services.AddScoped<NArchitectureCoreSecurity.Abstractions.Authentication.IJwtAuthenticationConfiguration>(_ =>
+            configuration.JwtAuthenticationConfiguration
+        );
+
+        _ = services.AddSingleton<AdministratorCredentialConfiguration>(configuration.AdministratorCredentialConfiguration);
+
+        _ = services.AddScoped<IAuthenticationService, JwtAuthenticationService>();
+        _ = services.AddScoped<
+            NArchitectureCoreSecurity.Abstractions.Authentication.IAuthenticationService<
+                short,
+                Guid,
+                Guid,
+                Guid,
+                Guid,
+                Guid,
+                Guid
+            >,
+            JwtAuthenticationService
+        >();
 
         return services;
     }
 
-    private static void AddCoreServices(IServiceCollection services, AuthConfiguration configuration)
+    /// <summary>
+    /// Registers authorization services
+    /// </summary>
+    private static IServiceCollection AddAuthorizationServices(this IServiceCollection services)
     {
-        // Add authentication services
-        _ = services.AddScoped<IJwtAuthenticationConfiguration>(_ => configuration.JwtAuthenticationConfiguration);
-        _ = services.AddSingleton<AdministratorCredentialConfiguration>(configuration.AdministratorCredentialConfiguration);
+        _ = services.AddScoped<IAuthorizationService, JwtAuthorizationService>();
         _ = services.AddScoped<
-            IAuthenticationService<short, Guid, Guid, Guid, Guid, Guid, Guid>,
-            JwtAuthenticationService<short, Guid, Guid, Guid, Guid, Guid, Guid>
+            NArchitectureCoreSecurity.Abstractions.Authorization.IAuthorizationService<Guid, short>,
+            JwtAuthorizationService
         >();
 
-        // Add cryptography services
-        _ = services.AddScoped<ICodeGenerator, CodeGenerator>();
+        return services;
+    }
 
-        // Add authorization services
+    /// <summary>
+    /// Registers authenticator services
+    /// </summary>
+    private static IServiceCollection AddAuthenticatorServices(this IServiceCollection services, AuthConfiguration configuration)
+    {
+        _ = services.AddScoped<NArchitectureCoreSecurity.Abstractions.Authenticator.IAuthenticatorConfiguration>(_ =>
+            configuration.AuthenticatorConfiguration
+        );
+        _ = services.AddScoped<IAuthenticatorService, AuthenticatorService>();
         _ = services.AddScoped<
-            IAuthorizationService<Guid, short>,
-            JwtAuthorizationService<short, Guid, Guid, Guid, Guid, Guid, Guid>
-        >();
-        _ = services.AddScoped(_ => configuration.AuthenticatorConfiguration);
-        _ = services.AddScoped<
-            IAuthenticator<short, Guid, Guid, Guid, Guid, Guid, Guid>,
-            Authenticator<short, Guid, Guid, Guid, Guid, Guid, Guid>
+            NArchitectureCoreSecurity.Abstractions.Authenticator.IAuthenticatorService<short, Guid, Guid, Guid, Guid, Guid, Guid>,
+            AuthenticatorService
         >();
 
-        // Add mailing services
+        return services;
+    }
+
+    /// <summary>
+    /// Registers cryptography services
+    /// </summary>
+    private static IServiceCollection AddCryptographyServices(this IServiceCollection services)
+    {
+        _ = services.AddScoped<
+            NArchitectureCoreSecurity.Abstractions.Cryptography.Generation.ICodeGenerator,
+            NArchitectureCoreSecurity.Cryptography.Generation.CodeGenerator
+        >();
+
+        return services;
+    }
+
+    /// <summary>
+    /// Registers mailing services
+    /// </summary>
+    private static IServiceCollection AddMailingServices(this IServiceCollection services, AuthConfiguration configuration)
+    {
         _ = services.AddSingleton(typeof(Core.Mailing.MailKit.Models.MailConfigration), configuration.MailConfiguration);
         _ = services.AddScoped<IMailService, MailKitMailService>();
+
+        return services;
     }
 }

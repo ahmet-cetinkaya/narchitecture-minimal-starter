@@ -7,4 +7,7 @@ public class UserGroup(string name) : NArchitectureCoreEntities.UserGroup<Guid, 
     [Obsolete("This constructor is for ORM, mapper etc.. Do not use it in the code.", true)]
     public UserGroup()
         : this(default!) { }
+
+    public virtual ICollection<UserInGroup>? UserInGroups { get; set; }
+    public virtual ICollection<UserGroupOperationClaim>? UserGroupOperationClaims { get; set; }
 }

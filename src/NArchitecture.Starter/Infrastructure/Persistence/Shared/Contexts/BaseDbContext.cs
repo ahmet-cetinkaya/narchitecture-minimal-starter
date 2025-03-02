@@ -9,8 +9,8 @@ public partial class BaseDbContext(DbContextOptions dbContextOptions, IServicePr
 {
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        _ = modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
-        applyAuthCustomConfigurations(modelBuilder);
+        _ = modelBuilder.ApplyConfigurationsFromAssemblyWithDefaultConstructorsOnly(Assembly.GetExecutingAssembly());
+        _ = ApplyAuthCustomConfigurations(modelBuilder);
 
         _ = modelBuilder.ApplyTimestampsConfiguration();
         _ = modelBuilder.ApplySoftDeleteConfiguration();
