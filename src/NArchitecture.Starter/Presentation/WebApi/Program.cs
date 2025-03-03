@@ -21,7 +21,7 @@ if (app.Environment.IsDevelopment())
     _ = app.Services.UseDbMigrationApplier();
 
     // Use OpenAPI UI
-    _ = app.UseOpenApiScalarUI();
+    _ = app.UseOpenApiUI();
 }
 
 // Use authorization services
