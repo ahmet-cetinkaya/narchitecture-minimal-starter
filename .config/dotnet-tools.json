@@ -6,43 +6,50 @@
       "version": "1.2.2",
       "commands": [
         "nArchGen"
-      ]
+      ],
+      "rollForward": false
     },
     "dotnet-ef": {
-      "version": "9.0.2",
+      "version": "9.0.6",
       "commands": [
         "dotnet-ef"
-      ]
+      ],
+      "rollForward": false
     },
     "run-script": {
       "version": "0.6.0",
       "commands": [
         "r"
-      ]
+      ],
+      "rollForward": false
     },
     "roslynator.dotnet.cli": {
       "version": "0.10.1",
       "commands": [
         "roslynator"
-      ]
+      ],
+      "rollForward": false
     },
     "security-scan": {
       "version": "5.6.7",
       "commands": [
         "security-scan"
-      ]
+      ],
+      "rollForward": false
     },
     "csharpier": {
-      "version": "0.30.6",
+      "version": "1.0.3",
       "commands": [
-        "dotnet-csharpier"
-      ]
+        "csharpier"
+      ],
+      "rollForward": false
     },
     "dotnet-outdated-tool": {
-      "version": "4.6.7",
+      "version": "4.6.8",
       "commands": [
         "dotnet-outdated"
-      ]
+      ],
+      "rollForward": false
     }
   }
 }
