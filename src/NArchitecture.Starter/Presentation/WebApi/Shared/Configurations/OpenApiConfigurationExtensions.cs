@@ -45,7 +45,9 @@ public static class OpenApiConfigurationExtensions
     /// <param name="configuration">The application configuration.</param>
     public static OpenApiConfiguration GetOpenApiConfiguration(this IConfiguration configuration)
     {
-        OpenApiConfiguration openApiOptions = configuration.GetSection("OpenApi").Get<OpenApiConfiguration>();
+        OpenApiConfiguration openApiOptions =
+            configuration.GetSection("OpenApi").Get<OpenApiConfiguration>()
+            ?? throw new InvalidOperationException("OpenApi configuration is not found.");
         return openApiOptions;
     }
 
