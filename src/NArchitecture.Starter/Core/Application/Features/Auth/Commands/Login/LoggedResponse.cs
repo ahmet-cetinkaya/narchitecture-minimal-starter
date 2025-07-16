@@ -8,8 +8,4 @@ namespace NArchitecture.Starter.Application.Features.Auth.Commands.Login;
 /// <param name="AccessToken">JWT access token for API authorization</param>
 /// <param name="RefreshToken">Refresh token for obtaining a new access token</param>
 /// <param name="RequiresAuthenticator">Indicates whether two-factor authentication is required</param>
-public readonly record struct LoggedResponse(
-    Token? AccessToken = null,
-    Token? RefreshToken = null,
-    bool RequiresAuthenticator = false
-);
+public record LoggedResponse(Token? AccessToken = null, Token? RefreshToken = null, bool RequiresAuthenticator = false);

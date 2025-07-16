@@ -25,7 +25,7 @@ public static class LoginEndpoint
         return group;
     }
 
-    private readonly record struct LoginRequest(string Email, string Password, string? AuthenticatorCode);
+    private record struct LoginRequest(string Email, string Password, string? AuthenticatorCode);
 
     private static async Task<Results<Ok<LoggedResponse>, BadRequest<string>>> Handle(
         LoginRequest request,

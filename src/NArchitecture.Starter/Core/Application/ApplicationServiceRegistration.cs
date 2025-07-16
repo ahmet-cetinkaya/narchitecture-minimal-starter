@@ -2,6 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using NArchitecture.Core.Application.DependencyInjection;
 using NArchitecture.Core.Localization.Resource.Yaml.DependencyInjection;
+using NArchitecture.Core.Mapper.AutoMapper.DependencyInjection;
 using NArchitecture.Core.Mediator;
 using NArchitecture.Core.Validation.FluentValidation.DependencyInjection;
 using NArchitecture.Starter.Application.Features.Auth;
@@ -26,7 +27,7 @@ public static class ApplicationServiceRegistration
         _ = services.AddFluentValidation(assemblies: [currentAssembly]);
 
         // Register NArchitecture.Core.Mapping.Abstractions.IMapper services for all AutoMapper.Profile services
-        _ = services.AddAutoMapper(currentAssembly);
+        _ = services.AddNArchitectureAutoMapper(currentAssembly);
 
         // Register NArchitecture.Core.Localization.Abstractions.ILocalizationService service with YamlResourceLocalization
         _ = services.AddYamlResourceLocalization();

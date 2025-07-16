@@ -54,7 +54,7 @@ public static class CreateProductEndpoint
     }
 
     // Request DTO to match the command parameters
-    private readonly record struct CreateProductRequest(
+    private record struct CreateProductRequest(
         string Name,
         string Description,
         decimal Price,
