@@ -7,13 +7,14 @@ After defining your domain entities, the next step is to create repository inter
 ## 📋 Steps to Define Repository Interfaces
 
 ### 1. Create the appropriate folder structure:
-   ```
-   Application/
-   ├── Features/
-   │   └── Inventory/
-   │       └── Repositories/
-   │           └── IProductRepository.cs
-   ```
+
+```
+Application/
+├── Features/
+│   └── Inventory/
+│       └── Repositories/
+│           └── IProductRepository.cs
+```
 
 ### 2. Create the Repository Interface
 
@@ -26,7 +27,7 @@ using NArchitecture.Starter.Domain.Features.Inventory.Entities;
 
 namespace NArchitecture.Starter.Application.Features.Inventory.Repositories;
 
-public interface IProductRepository : 
+public interface IProductRepository :
     IAsyncRepository<Product, int>,
     IRepository<Product, int>
 {
@@ -39,7 +40,7 @@ public interface IProductRepository :
 If your feature requires specific data access operations, define them in your repository interface:
 
 ```csharp
-public interface IProductRepository : 
+public interface IProductRepository :
     IAsyncRepository<Product, int>,
     IRepository<Product, int>
 {
@@ -53,11 +54,13 @@ public interface IProductRepository :
 1. **Keep Interfaces Focused**: Each repository should be dedicated to a single entity.
 
 2. **Use Domain Language**: Name methods using business terms:
+
    ```csharp
    Task<List<Product>> GetPopularProductsAsync(CancellationToken cancellationToken);
    ```
 
 3. **Define Asynchronous Methods**: Always include async methods:
+
    ```csharp
    Task<Product?> GetByIdAsync(int id, CancellationToken cancellationToken);
    ```

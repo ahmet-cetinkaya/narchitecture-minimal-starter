@@ -1,14 +1,17 @@
 [`🏠`](../README.md) > [`Contributing`](./README.md) > `Semantic Commit Messages`
 
 # 🏷️ Semantic Commit Messages
+
 Semantic commit messages help to understand the changes made in a commit. They follow a specific format that includes a type, scope, and subject.
 
 ## Pattern
+
 ```
 <type>(<scope>): <subject>
 ```
 
 ### Examples:
+
 ```
 feat(auth): add otp authenticator
 fix(auth): correct user authentication flow
@@ -22,7 +25,9 @@ ci(release): add new build step
 ```
 
 ## Segments
+
 ### Types
+
 The type of commit message is used to categorize the changes made in a commit. The following types are commonly used:
 
 - **feat**: A new feature for the user, not a new feature for build script
@@ -36,9 +41,11 @@ The type of commit message is used to categorize the changes made in a commit. T
 - **ci**: Changes to the continuous integration and deployment system - involving scripts, configurations, or tools
 
 ### Scopes
+
 The scope of a commit message is used to specify the module or feature that the changes affect. It is optional but can be helpful in identifying the context of the changes.
 
 #### Examples
+
 - **auth**: Authentication module
 - **customer**: Customer management features (e.g., registration, profile updates)
 - **payment**: Payment processing features (e.g., handling transactions, refunds)

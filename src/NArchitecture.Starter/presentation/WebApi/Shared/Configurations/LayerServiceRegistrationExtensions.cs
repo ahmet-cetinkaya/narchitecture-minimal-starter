@@ -1,5 +1,4 @@
 using NArchitecture.Starter.Application;
-using NArchitecture.Starter.Application.Features.Auth.Models;
 using NArchitecture.Starter.Persistence;
 using NArchitecture.Starter.Persistence.Shared.Models;
 
@@ -15,13 +14,7 @@ public static class LayerServiceRegistrationExtensions
     /// </summary>
     public static IServiceCollection AddApplicationLayer(this IServiceCollection services, IConfiguration configuration)
     {
-        AuthConfiguration authConfiguration = new(
-            AdministratorCredentialConfiguration: configuration.GetAdministratorCredentialConfiguration(),
-            JwtAuthenticationConfiguration: configuration.GetJwtConfiguration(),
-            AuthenticatorConfiguration: configuration.GetAuthenticatorConfiguration(),
-            MailConfiguration: configuration.GetMailConfiguration()
-        );
-        _ = services.AddApplicationServices(authConfiguration);
+        _ = services.AddApplicationServices();
 
         return services;
     }

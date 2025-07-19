@@ -14,21 +14,22 @@ CQRS separates operations that read data (queries) from operations that change d
 ## 📋 Steps to Implement Use Cases
 
 ### 1. Create the appropriate folder structure:
-   ```
-   Application/
-   ├── Features/
-   │   └── Inventory/
-   │       ├── Commands/
-   │       │   └── Create/
-   │       │       ├── CreateProductCommand.cs
-   │       │       ├── CreateProductCommandHandler.cs
-   │       │       ├── CreatedProductResponse.cs
-   │       └── Queries/
-   │           └── GetById/
-   │               ├── GetProductByIdQuery.cs
-   │               ├── GetProductByIdQueryHandler.cs
-   │               ├── GetProductByIdResponse.cs
-   ```
+
+```
+Application/
+├── Features/
+│   └── Inventory/
+│       ├── Commands/
+│       │   └── Create/
+│       │       ├── CreateProductCommand.cs
+│       │       ├── CreateProductCommandHandler.cs
+│       │       ├── CreatedProductResponse.cs
+│       └── Queries/
+│           └── GetById/
+│               ├── GetProductByIdQuery.cs
+│               ├── GetProductByIdQueryHandler.cs
+│               ├── GetProductByIdResponse.cs
+```
 
 ### 2. Create the Command/Query
 
@@ -42,9 +43,9 @@ using NArchitecture.Core.Mediator.Abstractions.CQRS;
 namespace NArchitecture.Starter.Application.Features.Inventory.Commands.Create;
 
 public record CreateProductCommand(
-    string Name, 
-    string Description, 
-    decimal Price, 
+    string Name,
+    string Description,
+    decimal Price,
     int StockQuantity
 ) : ICommand<CreatedProductResponse>, ILoggableRequest;
 ```
@@ -75,7 +76,7 @@ using NArchitecture.Starter.Domain.Features.Inventory.Entities;
 
 namespace NArchitecture.Starter.Application.Features.Inventory.Commands.Create;
 
-public class CreateProductCommandHandler(IProductRepository productRepository) 
+public class CreateProductCommandHandler(IProductRepository productRepository)
     : ICommandHandler<CreateProductCommand, CreatedProductResponse>
 {
     public async Task<CreatedProductResponse> Handle(CreateProductCommand request, CancellationToken cancellationToken)
@@ -148,11 +149,11 @@ public class ProductBusinessRules(IProductRepository productRepository)
             predicate: p => p.Name == name,
             cancellationToken: cancellationToken
         );
-        
+
         if (exists)
             throw new BusinessException("Product with this name already exists.");
     }
-    
+
     public void ProductShouldExist(Product? product)
     {
         if (product is null)
@@ -188,14 +189,14 @@ using NArchitecture.Starter.Application.Features.Inventory.Rules;
 
 namespace NArchitecture.Starter.Application.Features.Inventory.Commands.Create;
 
-public class CreateProductCommandHandler(IProductRepository productRepository, ProductBusinessRules productBusinessRules) 
+public class CreateProductCommandHandler(IProductRepository productRepository, ProductBusinessRules productBusinessRules)
     : ICommandHandler<CreateProductCommand, CreatedProductResponse>
 {
     public async Task<CreatedProductResponse> Handle(CreateProductCommand request, CancellationToken cancellationToken)
     {
         // Apply business rules
         await productBusinessRules.ProductNameMustBeUniqueAsync(request.Name, cancellationToken);
-        
+
         ...
     }
 }
@@ -220,10 +221,10 @@ public class CreateProductCommandValidator : AbstractValidator<CreateProductComm
         RuleFor(p => p.Name)
             .NotEmpty().WithMessage("Product name is required")
             .MaximumLength(100).WithMessage("Product name cannot exceed 100 characters");
-            
+
         RuleFor(p => p.Price)
             .GreaterThan(0).WithMessage("Price must be greater than zero");
-            
+
         RuleFor(p => p.StockQuantity)
             .GreaterThanOrEqualTo(0).WithMessage("Stock quantity cannot be negative");
     }
@@ -411,21 +412,21 @@ using NArchitecture.Starter.Application.Features.Inventory.Constants;
 
 namespace NArchitecture.Starter.Application.Features.Inventory.Commands.Create;
 
-public class CreateProductCommandValidator(ILocalizationService localizationService) 
+public class CreateProductCommandValidator(ILocalizationService localizationService)
     : AbstractValidator<CreateProductCommand>, IValidationProfile<CreateProductCommand>
 {
     public CreateProductCommandValidator()
     {
         RuleFor(p => p.Name)
-            .NotEmpty().WithMessage(async _ => 
+            .NotEmpty().WithMessage(async _ =>
                 await localizationService.GetLocalizedAsync(ProductMessages.Validation.NameRequired));
-            
+
         RuleFor(p => p.Price)
-            .GreaterThan(0).WithMessage(async _ => 
+            .GreaterThan(0).WithMessage(async _ =>
                 await localizationService.GetLocalizedAsync(ProductMessages.Validation.PricePositive));
-            
+
         RuleFor(p => p.StockQuantity)
-            .GreaterThanOrEqualTo(0).WithMessage(async _ => 
+            .GreaterThanOrEqualTo(0).WithMessage(async _ =>
                 await localizationService.GetLocalizedAsync(ProductMessages.Validation.StockNonNegative));
     }
 }
@@ -464,7 +465,7 @@ public class ProductBusinessRules(
             predicate: p => p.Name == name,
             cancellationToken: cancellationToken
         );
-        
+
         if (exists)
         {
             string localizedMessage = await localizationService.GetLocalizedAsync(
@@ -485,7 +486,7 @@ For YAML-based localization used in NArchitecture, register the services in your
 // Application/ApplicationServiceRegistration.cs
 public static IServiceCollection AddApplicationServices(this IServiceCollection services)
 {
-    // Register NArchitecture.Core.Localization.Abstractions.ILocalizationService service 
+    // Register NArchitecture.Core.Localization.Abstractions.ILocalizationService service
     // with YamlResourceLocalization
     services.AddYamlResourceLocalization();
 
@@ -502,8 +503,9 @@ This registers an implementation of `ILocalizationService` that uses YAML files 
 1. **Keep Commands and Queries Separate**: Maintain a clear distinction between state-changing and read-only operations.
 
 2. **Use Pipeline Behaviors**: Leverage NArchitecture's pipeline behaviors:
+
    ```csharp
-   public record CreateProductCommand(...) : 
+   public record CreateProductCommand(...) :
        ICommand<CreatedProductResponse>,
        ILoggableRequest,             // Enables logging
        ITransactionalRequest,        // Wraps in a transaction
@@ -514,6 +516,7 @@ This registers an implementation of `ILocalizationService` that uses YAML files 
 3. **Validate Input**: Always implement validators for commands and complex queries.
 
 4. **Use IMapper for Object Mapping**: Never expose domain entities directly; use IMapper to transform entities into DTOs:
+
    ```csharp
    // In your handler:
    return mapper.Map<ProductDetailResponse>(product);

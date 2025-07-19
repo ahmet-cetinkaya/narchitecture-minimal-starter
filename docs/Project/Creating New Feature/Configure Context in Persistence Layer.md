@@ -7,17 +7,18 @@ This document guides you through the process of configuring your database contex
 ## 📝 Steps to Configure Context
 
 ### 1. Create the appropriate folder structure:
-   ```
-   Persistence/
-   ├── Features/
-   │   └── Inventory/
-   │       ├── Contexts/
-   │       │   ├── BaseDbContext.Inventory.cs
-   │       │   └── Configurations/
-   │       │       └── ProductConfiguration.cs
-   │       └── Seeds/
-   │           └── ProductSeeds.cs
-   ```
+
+```
+Persistence/
+├── Features/
+│   └── Inventory/
+│       ├── Contexts/
+│       │   ├── BaseDbContext.Inventory.cs
+│       │   └── Configurations/
+│       │       └── ProductConfiguration.cs
+│       └── Seeds/
+│           └── ProductSeeds.cs
+```
 
 ### 2. Extend BaseDbContext
 
@@ -56,13 +57,13 @@ public class ProductConfiguration : IEntityTypeConfiguration<Product>
         // Property configurations
         builder.Property(p => p.Name)
             .HasMaxLength(100);
-            
+
         builder.Property(p => p.Price)
             .HasPrecision(18, 2);
-            
+
         // Index for faster searches
         builder.HasIndex(p => p.Name);
-        
+
         // Seed initial data
         builder.HasData(ProductSeeds.CreateSeeds());
     }
@@ -86,7 +87,7 @@ public static class ProductSeeds
         public const int Laptop = 1;
         public const int Phone = 2;
     }
-    
+
     public static Product[] CreateSeeds()
     {
         return
@@ -101,11 +102,13 @@ public static class ProductSeeds
 ## 🔮 Context Configuration Best Practices
 
 1. **Define Database Indexes**: Create indexes for frequently searched columns:
+
    ```csharp
    builder.HasIndex(p => p.Name);
    ```
 
 2. **Configure Relationships**: Define relationships clearly:
+
    ```csharp
    // If Product has a Category
    builder.HasOne(p => p.Category)

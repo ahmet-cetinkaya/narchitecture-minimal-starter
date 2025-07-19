@@ -8,23 +8,20 @@
   <!-- Project References -->
   <ItemGroup>
     <ProjectReference Include="../Domain/NArchitecture.Starter.Domain.csproj" />
-    <!-- TODO: remove -->
-    <ProjectReference Include="../../../NArchitecture.Core/src/Application/NArchitecture.Core.Application.csproj" />
-    <ProjectReference Include="../../../NArchitecture.Core/src/Application.DependencyInjection/NArchitecture.Core.Application.DependencyInjection.csproj" />
-    <ProjectReference Include="../../../NArchitecture.Core/src/Persistence.Abstractions/NArchitecture.Core.Persistence.Abstractions.csproj" />
-    <ProjectReference Include="../../../NArchitecture.Core/src/Security/NArchitecture.Core.Security.csproj" />
-    <ProjectReference Include="../../../NArchitecture.Core/src/Mediator/NArchitecture.Core.Mediator.csproj" />
-    <ProjectReference Include="../../../NArchitecture.Core/src/Validation.Abstractions/NArchitecture.Core.Validation.Abstractions.csproj" />
-    <ProjectReference Include="../../../NArchitecture.Core/src/Validation.FluentValidation.DependencyInjection/NArchitecture.Core.Validation.FluentValidation.DependencyInjection.csproj" />
-    <ProjectReference Include="../../../NArchitecture.Core/src/Mapper.AutoMapper.DependencyInjection/NArchitecture.Core.Mapper.AutoMapper.DependencyInjection.csproj" />
-    <ProjectReference Include="../../../NArchitecture.Core/src/Localization.Abstractions/NArchitecture.Core.Localization.Abstractions.csproj" />
-    <ProjectReference Include="../../../NArchitecture.Core/src/Localization.Resource.Yaml.DependencyInjection/NArchitecture.Core.Localization.Resource.Yaml.DependencyInjection.csproj" />
-    <ProjectReference Include="../../../NArchitecture.Core/src/Mailing.MailKit/NArchitecture.Core.Mailing.MailKit.csproj" />
   </ItemGroup>
   <!-- Package References -->
   <ItemGroup>
-    <!-- <PackageReference Include="AutoMapper" Version="14.0.0" />
-    <PackageReference Include="MediatR" Version="12.4.1" />
+    <!-- TODO: Pre-release -->
+    <ProjectReference Include="../../../../../nArchitecture.Core/src/Application/NArchitecture.Core.Application.csproj" />
+    <ProjectReference Include="../../../../../nArchitecture.Core/src/Application.DependencyInjection/NArchitecture.Core.Application.DependencyInjection.csproj" />
+    <ProjectReference Include="../../../../../nArchitecture.Core/src/Persistence.Abstractions/NArchitecture.Core.Persistence.Abstractions.csproj" />
+    <ProjectReference Include="../../../../../nArchitecture.Core/src/Mediator/NArchitecture.Core.Mediator.csproj" />
+    <ProjectReference Include="../../../../../nArchitecture.Core/src/Validation.Abstractions/NArchitecture.Core.Validation.Abstractions.csproj" />
+    <ProjectReference Include="../../../../../nArchitecture.Core/src/Validation.FluentValidation.DependencyInjection/NArchitecture.Core.Validation.FluentValidation.DependencyInjection.csproj" />
+    <ProjectReference Include="../../../../../nArchitecture.Core/src/Mapper.AutoMapper.DependencyInjection/NArchitecture.Core.Mapper.AutoMapper.DependencyInjection.csproj" />
+    <ProjectReference Include="../../../../../nArchitecture.Core/src/Localization.Abstractions/NArchitecture.Core.Localization.Abstractions.csproj" />
+    <ProjectReference Include="../../../../../nArchitecture.Core/src/Localization.Resource.Yaml.DependencyInjection/NArchitecture.Core.Localization.Resource.Yaml.DependencyInjection.csproj" />
+    <!-- 
     <PackageReference Include="NArchitecture.Core.Application" Version="1.0.6" />
     <PackageReference Include="NArchitecture.Core.Mailing" Version="1.0.3" />
     <PackageReference Include="NArchitecture.Core.Mailing.Mailkit" Version="1.0.3" />
@@ -35,7 +32,8 @@
     <PackageReference Include="NArchitecture.Core.Localization.Resource.Yaml.DependencyInjection"
     Version="1.0.2" />
     <PackageReference Include="NArchitecture.Core.ElasticSearch" Version="1.0.1" />
-    <PackageReference Include="NArchitecture.Core.Security.DependencyInjection" Version="1.2.1" /> -->
+    <PackageReference Include="NArchitecture.Core.Security.DependencyInjection" Version="1.2.1" /> 
+    -->
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.7" />
   </ItemGroup>
   <!-- Resources -->

@@ -1,6 +1,7 @@
 [`🏠`](../README.md) > [`Contributing`](./README.md) > `How to Contribute`
 
 # 🤝 How to Contribute
+
 1. Fork the repository.
 2. Create a new branch:
    ```sh

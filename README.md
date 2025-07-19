@@ -1,14 +1,14 @@
 # ![NArchitecture Logo](https://github.com/user-attachments/assets/8a61adb0-f0b8-48e4-82b3-db38e10bb052) NArchitecture Project
+
 ![GitHub contributors](https://img.shields.io/github/contributors/kodlamaio-projects/nArchitecture?style=for-the-badge) ![GitHub forks](https://img.shields.io/github/forks/kodlamaio-projects/nArchitecture?style=for-the-badge) ![GitHub stars](https://img.shields.io/github/stars/kodlamaio-projects/nArchitecture?style=for-the-badge) ![GitHub issues](https://img.shields.io/github/issues/kodlamaio-projects/nArchitecture?style=for-the-badge)
 
-**NArchitecture** is a **.NET Core framework** project designed to provide a well-structured and scalable architecture for modern applications. Inspired by **Clean Architecture**, it aims to enhance development efficiency by offering a robust framework that enforces clean coding principles and best practices.  
+**NArchitecture** is a **.NET Core framework** project designed to provide a well-structured and scalable architecture for modern applications. Inspired by **Clean Architecture**, it aims to enhance development efficiency by offering a robust framework that enforces clean coding principles and best practices.
 
-By providing a solid foundation, **NArchitecture** helps developers build **modular, maintainable, and testable applications** while ensuring a clear separation of concerns. It includes a wide range of built-in features such as **CQRS, Advanced Repository, Dynamic Querying, JWT, OTP, Role-Based Management, Distributed Caching, Logging, Search Engine**, and more.  
+By providing a solid foundation, **NArchitecture** helps developers build **modular, maintainable, and testable applications** while ensuring a clear separation of concerns. It includes a wide range of built-in features such as **CQRS, Advanced Repository, Dynamic Querying, JWT, OTP, Role-Based Management, Distributed Caching, Logging, Search Engine**, and more.
 
-To further accelerate development, the framework supports **code generation** through the [Code Generator](https://github.com/kodlamaio-projects/nArchitecture.Gen), enabling rapid project setup and consistent implementation of architectural patterns. Additionally, its [Core Packages](https://github.com/kodlamaio-projects/nArchitecture.Core) provide essential components to streamline development and maintain a high-quality codebase.  
+To further accelerate development, the framework supports **code generation** through the [Code Generator](https://github.com/kodlamaio-projects/nArchitecture.Gen), enabling rapid project setup and consistent implementation of architectural patterns. Additionally, its [Core Packages](https://github.com/kodlamaio-projects/nArchitecture.Core) provide essential components to streamline development and maintain a high-quality codebase.
 
-With **NArchitecture**, developers can focus on writing business logic rather than spending time on repetitive infrastructure setup, ultimately delivering cleaner, more efficient, and scalable software solutions.  
-
+With **NArchitecture**, developers can focus on writing business logic rather than spending time on repetitive infrastructure setup, ultimately delivering cleaner, more efficient, and scalable software solutions.
 
 ## ⚡ Getting Started
 
@@ -25,6 +25,7 @@ With **NArchitecture**, developers can focus on writing business logic rather th
 After running `dotnet tool restore`, you can use `dotnet r` to execute and customize commands from `global.json`.
 
 Example usage:
+
 ```sh
 dotnet r run
 dotnet r build

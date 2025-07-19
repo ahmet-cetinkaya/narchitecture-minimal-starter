@@ -7,13 +7,14 @@ This document guides you through implementing repositories in the Persistence la
 ## 🚀 Steps to Implement Repositories
 
 ### 1. Create the appropriate folder structure:
-   ```
-   Persistence/
-   ├── Features/
-   │   └── Inventory/
-   │       └── Repositories/
-   │           └── EfProductRepository.cs
-   ```
+
+```
+Persistence/
+├── Features/
+│   └── Inventory/
+│       └── Repositories/
+│           └── EfProductRepository.cs
+```
 
 ### 2. Create the Repository Implementation
 
@@ -29,7 +30,7 @@ using NArchitecture.Starter.Persistence.Shared.Contexts;
 
 namespace NArchitecture.Starter.Persistence.Features.Inventory.Repositories;
 
-public class EfProductRepository(BaseDbContext context) : 
+public class EfProductRepository(BaseDbContext context) :
     EfRepositoryBase<Product, int, BaseDbContext>(context),
     IProductRepository
 {
@@ -68,10 +69,10 @@ public static IServiceCollection AddPersistenceServices(
     PersistenceConfiguration configuration)
 {
     // ...existing code...
-    
+
     // Register your repository
     services.AddScoped<IProductRepository, EfProductRepository>();
-    
+
     return services;
 }
 ```
@@ -79,6 +80,7 @@ public static IServiceCollection AddPersistenceServices(
 ## 🌟 Repository Implementation Best Practices
 
 1. **Optimize Read Queries**: Use AsNoTracking for read-only operations:
+
    ```csharp
    public async Task<List<Product>> GetAllProductsAsync(CancellationToken cancellationToken)
    {
@@ -90,10 +92,11 @@ public static IServiceCollection AddPersistenceServices(
    ```
 
 2. **Use Pagination**: For potentially large result sets:
+
    ```csharp
    public async Task<List<Product>> GetProductsPagedAsync(
-       int page, 
-       int pageSize, 
+       int page,
+       int pageSize,
        CancellationToken cancellationToken)
    {
        return await Context.Products
@@ -107,13 +110,13 @@ public static IServiceCollection AddPersistenceServices(
 3. **Implement Simple Filtering**:
    ```csharp
    public async Task<List<Product>> GetProductsByPriceRangeAsync(
-       decimal minPrice, 
+       decimal minPrice,
        decimal maxPrice,
        CancellationToken cancellationToken)
    {
        return await Context.Products
-           .Where(p => p.Price >= minPrice && 
-                    p.Price <= maxPrice && 
+           .Where(p => p.Price >= minPrice &&
+                    p.Price <= maxPrice &&
                     p.DeletedAt == null)
            .ToListAsync(cancellationToken);
    }

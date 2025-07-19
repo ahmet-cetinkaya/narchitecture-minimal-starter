@@ -7,6 +7,7 @@ Entities represent the core business objects in your domain layer. This document
 ## 📝 Steps to Define an Entity
 
 1. Create an appropriate folder structure:
+
    ```
    Domain/
    ├── Features/
@@ -16,6 +17,7 @@ Entities represent the core business objects in your domain layer. This document
    ```
 
 2. Create your entity class inheriting from the appropriate base class
+
    ```csharp
    using NArchitecture.Core.Persistence.Abstractions.Repositories;
 
@@ -32,7 +34,7 @@ Entities represent the core business objects in your domain layer. This document
        {
            // Required for EF Core, serialization, etc.
        }
-       
+
        public Product(string name, decimal price, int stock)
        {
            Name = name;
@@ -45,6 +47,7 @@ Entities represent the core business objects in your domain layer. This document
 ## 🔮 Entity Design Best Practices
 
 1. **Mark Parameterless Constructor with Obsolete**: This communicates that the constructor is only for frameworks, not for direct use:
+
    ```csharp
    [Obsolete("This constructor is for ORM, mapper etc.. Do not use it in the code.", true)]
    public Product()
@@ -53,6 +56,7 @@ Entities represent the core business objects in your domain layer. This document
    ```
 
 2. **Provide Business Constructor**: Create constructors that ensure the entity is created in a valid state:
+
    ```csharp
    public Product(string name, decimal price)
    {

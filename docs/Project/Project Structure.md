@@ -1,11 +1,13 @@
 [`🏠`](../README.md) > [`Project`](./README.md) > `Project Structure`
 
 # 📂 Project Structure
+
 This document provides an overview of the project structure and the different layers within the NArchitecture framework. Understanding the structure will help you navigate the codebase and contribute effectively.
 
 NArchitecture is inspired by Clean Architecture, which emphasizes separation of concerns and promotes a scalable and maintainable codebase. This architecture allows for independent development, testability, and easy adaptation to changing requirements or technologies.
 
 ## 🏗️ Folder Structure
+
 The project is organized into the following main folders, reflecting the architectural layers of the application:
 
 ```
@@ -22,9 +24,11 @@ NArchitecture.Starter/
 ## 🏗️ Architectural Layers
 
 ### 1. **Core**
+
 The Core folder contains the central parts of the application. This is the heart of the software system and houses the domain models, entities, and application services.
 
 #### 1.1 **Domain Layer**
+
 The Domain Layer forms the foundation of the application, containing the entity definitions and domain models that represent the core concepts of the business domain. This layer is completely isolated from external concerns and focuses on defining the structure and relationships of business objects.
 
 - **Entities**: Represent the core business objects with identity and lifecycle (e.g., User, Product, Order). These define the structure and properties of primary domain concepts.
@@ -33,6 +37,7 @@ The Domain Layer forms the foundation of the application, containing the entity 
 - **Domain Models**: Define the structure and relationships of objects within the domain without necessarily containing complex business logic.
 
 #### 1.2 **Application Layer**
+
 The Application Layer serves as the primary container for business logic and rules. It orchestrates and coordinates the domain objects to perform specific application tasks and implements the core business functionality. This layer defines the jobs the software is supposed to do and contains the use cases of the application.
 
 - **Use Cases**: Specific business operations (commands and queries) that implement the business logic. Each use case typically represents one specific action a user can perform.
@@ -45,9 +50,11 @@ The Application Layer serves as the primary container for business logic and rul
 - **Mappers**: Objects responsible for transforming data between different representations across layer boundaries.
 
 ### 2. **Infrastructure**
+
 The Infrastructure folder contains implementations for interfaces defined in the core layers and provides technical capabilities to the system. This layer handles external concerns like databases, file systems, third-party APIs, and other infrastructure-related aspects that support the inner layers.
 
 #### 2.1 **Persistence Layer**
+
 The Persistence Layer is responsible for data persistence and retrieval. It implements the repository interfaces defined in the Application Layer and handles all database-related operations.
 
 - **Repositories**: Concrete implementations of the repository interfaces that handle data access operations and transform between domain objects and database entities.
@@ -57,9 +64,11 @@ The Persistence Layer is responsible for data persistence and retrieval. It impl
 - **ORM Configurations**: Object-Relational Mapping configurations that define how domain objects map to database tables and columns.
 
 ### 3. **Presentation**
+
 The Presentation Layer is the entry point to the application, handling user interactions and formatting responses. It depends on the Application Layer to execute use cases and present the results in an appropriate format. This layer adapts to the different delivery mechanisms without affecting the core application logic.
 
 #### 3.1 **WebApi**
+
 The WebApi is a specific implementation of the Presentation Layer that exposes the application functionality through HTTP endpoints.
 
 - **Controllers**: API endpoints that handle HTTP requests, validate inputs, invoke the appropriate use cases, and format HTTP responses.

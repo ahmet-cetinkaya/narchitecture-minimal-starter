@@ -125,7 +125,7 @@ public static class FeaturesEndpointRegistration
         // Map feature endpoints
         app.MapAuthEndpoints();
         app.MapInventoryEndpoints();
-        
+
         return app;
     }
 }
@@ -140,9 +140,9 @@ For API versioning, you can organize endpoints by version:
 public static RouteGroupBuilder MapInventoryEndpointsV1(this WebApplication app)
 {
     RouteGroupBuilder group = app.MapGroup("/api/v1/inventory").WithTags("Inventory V1");
-    
+
     // Register v1 endpoints
-    
+
     return group;
 }
 
@@ -150,9 +150,9 @@ public static RouteGroupBuilder MapInventoryEndpointsV1(this WebApplication app)
 public static RouteGroupBuilder MapInventoryEndpointsV2(this WebApplication app)
 {
     RouteGroupBuilder group = app.MapGroup("/api/v2/inventory").WithTags("Inventory V2");
-    
+
     // Register v2 endpoints
-    
+
     return group;
 }
 ```
@@ -165,7 +165,7 @@ public static WebApplication MapFeaturesEndpoints(this WebApplication app)
     app.MapAuthEndpoints();
     app.MapInventoryEndpointsV1();
     app.MapInventoryEndpointsV2();
-    
+
     return app;
 }
 ```

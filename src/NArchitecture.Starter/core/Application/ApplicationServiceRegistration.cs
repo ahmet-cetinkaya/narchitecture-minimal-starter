@@ -5,14 +5,12 @@ using NArchitecture.Core.Localization.Resource.Yaml.DependencyInjection;
 using NArchitecture.Core.Mapper.AutoMapper.DependencyInjection;
 using NArchitecture.Core.Mediator;
 using NArchitecture.Core.Validation.FluentValidation.DependencyInjection;
-using NArchitecture.Starter.Application.Features.Auth;
-using NArchitecture.Starter.Application.Features.Auth.Models;
 
 namespace NArchitecture.Starter.Application;
 
 public static class ApplicationServiceRegistration
 {
-    public static IServiceCollection AddApplicationServices(this IServiceCollection services, AuthConfiguration authConfiguration)
+    public static IServiceCollection AddApplicationServices(this IServiceCollection services)
     {
         // Get the current assembly that contains our handlers
         Assembly currentAssembly = typeof(ApplicationServiceRegistration).Assembly;
@@ -31,9 +29,6 @@ public static class ApplicationServiceRegistration
 
         // Register NArchitecture.Core.Localization.Abstractions.ILocalizationService service with YamlResourceLocalization
         _ = services.AddYamlResourceLocalization();
-
-        // Register features
-        _ = services.AddAuthFeature(authConfiguration);
 
         return services;
     }
