@@ -15,7 +15,7 @@ NArchitecture.Starter/
 │   └── Domain/
 ├── Infrastructure/
 │   └── Persistence/
-└── Presentation/
+└── presentation/
     └── WebApi/
 ```
 

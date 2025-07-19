@@ -5,8 +5,8 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="../../Core/Application/NArchitecture.Starter.Application.csproj" />
-    <ProjectReference Include="../../Infrastructure/Persistence/NArchitecture.Starter.Persistence.csproj" />
+    <ProjectReference Include="../../core/Application/NArchitecture.Starter.Application.csproj" />
+    <ProjectReference Include="../../infrastructure/Persistence/NArchitecture.Starter.Persistence.csproj" />
     <!-- TODO: remove -->
     <ProjectReference Include="../../../NArchitecture.Core/src/Security.WebApi/NArchitecture.Core.Security.WebApi.csproj" />
   </ItemGroup>

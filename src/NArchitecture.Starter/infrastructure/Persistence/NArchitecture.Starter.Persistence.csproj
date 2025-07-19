@@ -7,7 +7,7 @@
   </PropertyGroup>
   <!-- Project References -->
   <ItemGroup>
-    <ProjectReference Include="../../Core/Application/NArchitecture.Starter.Application.csproj" />
+    <ProjectReference Include="../../core/Application/NArchitecture.Starter.Application.csproj" />
     <!-- TODO: remove -->
     <ProjectReference Include="../../../NArchitecture.Core/src/Persistence.Abstractions/NArchitecture.Core.Persistence.Abstractions.csproj" />
     <ProjectReference Include="../../../NArchitecture.Core/src/Persistence.EntityFramework/NArchitecture.Core.Persistence.EntityFramework.csproj" />
