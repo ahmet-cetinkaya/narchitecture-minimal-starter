@@ -256,52 +256,50 @@ When a validator class is defined for a command or query, NArchitecture's valida
 
 ## 🔄 Object Mapping (Optional)
 
-Create mapping profiles to handle object transformations between layers:
+Create mapping profiles to handle object transformations between layers using Mapster:
 
 ```csharp
 // Application/Features/Inventory/Commands/Create/CreateProductMappingProfile.cs
 
-using AutoMapper;
+using Mapster;
 using NArchitecture.Core.Mapper.Abstractions;
 using NArchitecture.Starter.Domain.Features.Inventory.Entities;
 
 namespace NArchitecture.Starter.Application.Features.Inventory.Commands.Create;
 
-public class CreateProductMappingProfile : Profile, IMappingProfile
+public class CreateProductMappingProfile : IRegister, IMappingProfile<CreateProductMappingProfile>
 {
-    public CreateProductMappingProfile()
+    public void Register(TypeAdapterConfig config)
     {
         // Command to entity mapping
-        CreateMap<CreateProductCommand, Product>()
-            .ForMember(dest => dest.Id, opt => opt.Ignore())
-            .ForMember(dest => dest.CreatedAt, opt => opt.Ignore())
-            .ForMember(dest => dest.UpdatedAt, opt => opt.Ignore())
-            .ForMember(dest => dest.DeletedAt, opt => opt.Ignore());
+        config.NewConfig<CreateProductCommand, Product>()
+            .Ignore(dest => dest.Id)
+            .Ignore(dest => dest.CreatedAt)
+            .Ignore(dest => dest.UpdatedAt)
+            .Ignore(dest => dest.DeletedAt);
 
-        // Entity to response mapping (using constructor parameters for record struct)
-        CreateMap<Product, CreatedProductResponse>()
-            .ConstructUsing(src => new CreatedProductResponse(
-                src.Id,
-                src.Name,
-                src.Price,
-                src.CreatedAt
-            ));
+        // Entity to response mapping
+        config.NewConfig<Product, CreatedProductResponse>()
+            .Map(dest => dest.Id, src => src.Id)
+            .Map(dest => dest.Name, src => src.Name)
+            .Map(dest => dest.Price, src => src.Price)
+            .Map(dest => dest.CreatedAt, src => src.CreatedAt);
     }
 }
 ```
 
 ### Registering Mapping Profiles
 
-Mapping profiles are registered with the `AddAutoMapper()` method in your `ApplicationServiceRegistration` class:
+Mapping profiles are registered with the `AddNArchitectureMapster()` method in your `ApplicationServiceRegistration` class:
 
 ```csharp
 // Application/ApplicationServiceRegistration.cs
 
 public static IServiceCollection AddApplicationServices(this IServiceCollection services)
 {
-    // Register NArchitecture.Core.Mapping.Abstractions.IMapper services
-    // for all AutoMapper.Profile services
-    services.AddAutoMapper(typeof(ApplicationServiceRegistration).Assembly);
+    // Register NArchitecture.Core.Mapper.Abstractions.IMapper services
+    // for all Mapster mapping profiles
+    services.AddNArchitectureMapster(typeof(ApplicationServiceRegistration).Assembly);
 
     ...
 
@@ -309,7 +307,36 @@ public static IServiceCollection AddApplicationServices(this IServiceCollection 
 }
 ```
 
-This registers AutoMapper profiles and provides an implementation of `NArchitecture.Core.Mapping.Abstractions.IMapper`.
+This registers Mapster profiles and provides an implementation of `NArchitecture.Core.Mapper.Abstractions.IMapper`.
+
+### Advanced Registration Options
+
+You can also use additional configuration options:
+
+```csharp
+// With custom configuration
+services.AddNArchitectureMapster(
+    configAction: config => {
+        // Global Mapster configuration
+        config.Default.PreserveReference(true);
+    },
+    typeof(ApplicationServiceRegistration).Assembly
+);
+
+// With different service lifetime
+services.AddNArchitectureMapster(
+    ServiceLifetime.Scoped,
+    typeof(ApplicationServiceRegistration).Assembly
+);
+
+// Using global configuration
+services.AddNArchitectureMapsterGlobal(
+    configAction: config => {
+        // Configure global TypeAdapterConfig
+        config.Default.PreserveReference(true);
+    }
+);
+```
 
 When using object mapping in your handlers:
 

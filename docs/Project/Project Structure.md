@@ -47,7 +47,7 @@ The Application Layer serves as the primary container for business logic and rul
 - **Services**: Application services that implement business logic by coordinating between domain objects and infrastructure services.
 - **Repositories Interfaces**: Contracts defining how to access and persist domain objects without specifying the actual implementation details.
 - **Validators**: Components that ensure incoming data meets required business rules before processing.
-- **Mappers**: Objects responsible for transforming data between different representations across layer boundaries.
+- **Mappers**: Objects responsible for transforming data between different representations across layer boundaries using Mapster for high-performance object mapping.
 
 ### 2. **Infrastructure**
 

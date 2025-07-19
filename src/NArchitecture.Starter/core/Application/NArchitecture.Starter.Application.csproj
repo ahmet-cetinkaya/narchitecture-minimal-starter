@@ -18,7 +18,7 @@
     <ProjectReference Include="../../../../../nArchitecture.Core/src/Mediator/NArchitecture.Core.Mediator.csproj" />
     <ProjectReference Include="../../../../../nArchitecture.Core/src/Validation.Abstractions/NArchitecture.Core.Validation.Abstractions.csproj" />
     <ProjectReference Include="../../../../../nArchitecture.Core/src/Validation.FluentValidation.DependencyInjection/NArchitecture.Core.Validation.FluentValidation.DependencyInjection.csproj" />
-    <ProjectReference Include="../../../../../nArchitecture.Core/src/Mapper.AutoMapper.DependencyInjection/NArchitecture.Core.Mapper.AutoMapper.DependencyInjection.csproj" />
+    <ProjectReference Include="../../../../../nArchitecture.Core/src/Mapper.Mapster.DependencyInjection/NArchitecture.Core.Mapper.Mapster.DependencyInjection.csproj" />
     <ProjectReference Include="../../../../../nArchitecture.Core/src/Localization.Abstractions/NArchitecture.Core.Localization.Abstractions.csproj" />
     <ProjectReference Include="../../../../../nArchitecture.Core/src/Localization.Resource.Yaml.DependencyInjection/NArchitecture.Core.Localization.Resource.Yaml.DependencyInjection.csproj" />
     <!-- 

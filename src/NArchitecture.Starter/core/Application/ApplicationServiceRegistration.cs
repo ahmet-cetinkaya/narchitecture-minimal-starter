@@ -2,7 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using NArchitecture.Core.Application.DependencyInjection;
 using NArchitecture.Core.Localization.Resource.Yaml.DependencyInjection;
-using NArchitecture.Core.Mapper.AutoMapper.DependencyInjection;
+using NArchitecture.Core.Mapper.Mapster.DependencyInjection;
 using NArchitecture.Core.Mediator;
 using NArchitecture.Core.Validation.FluentValidation.DependencyInjection;
 
@@ -24,8 +24,8 @@ public static class ApplicationServiceRegistration
         // Register NArchitecture.Core.Validation.Abstractions.IValidator<T> services for all FluentValidation.IValidator<T> services
         _ = services.AddFluentValidation(assemblies: [currentAssembly]);
 
-        // Register NArchitecture.Core.Mapping.Abstractions.IMapper services for all AutoMapper.Profile services
-        _ = services.AddNArchitectureAutoMapper(currentAssembly);
+        // Register NArchitecture.Core.Mapping.Abstractions.IMapper services for all Mapster.IRegister services
+        _ = services.AddNArchitectureMapster(currentAssembly);
 
         // Register NArchitecture.Core.Localization.Abstractions.ILocalizationService service with YamlResourceLocalization
         _ = services.AddYamlResourceLocalization();
