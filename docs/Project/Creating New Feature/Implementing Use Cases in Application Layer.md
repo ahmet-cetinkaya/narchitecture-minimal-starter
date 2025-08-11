@@ -57,7 +57,7 @@ Create a response model representing the operation result:
 ```csharp
 namespace NArchitecture.Starter.Application.Features.Inventory.Commands.Create;
 
-public record struct CreatedProductResponse(
+public record CreatedProductResponse(
     int Id,
     string Name,
     decimal Price,

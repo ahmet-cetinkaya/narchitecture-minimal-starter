@@ -12,10 +12,10 @@ The project is organized into the following main folders, reflecting the archite
 
 ```
 NArchitecture.Starter/
-├── Core/
+├── core/
 │   ├── Application/
 │   └── Domain/
-├── Infrastructure/
+├── infrastructure/
 │   └── Persistence/
 └── presentation/
     └── WebApi/
