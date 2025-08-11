@@ -38,7 +38,7 @@
   </ItemGroup>
   <!-- Resources -->
   <ItemGroup>
-    <None Update="Features\**\Resources\Locales\*.*.yaml">
+    <None Update="Features/**/Resources/Locales/*.*.yaml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
